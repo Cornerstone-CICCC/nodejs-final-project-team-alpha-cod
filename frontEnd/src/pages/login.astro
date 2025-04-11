@@ -1,0 +1,176 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+    <main>
+        
+    <header id=" header">
+        <h1 id="O">O</h1>
+        <h1 id="Title">Tic Tac Toe</h1>
+        <h1 id="X" >X</h1>
+    </header>
+    <div id="Form-Layout">
+  <form id="form-login">
+    <label>
+      Username
+      <input type="text" name="username" placeholder="Enter username" required />
+    </label>
+    <label>
+      Password
+      <input type="password" name="password" placeholder="Enter password" required />
+    </label>
+    <button id="Login">Play!</button>
+  </form>
+  <button id="Register" onclick="window.location.href='/register'">Create Account to play!</button>
+ </div>
+</main>
+
+</Layout>
+
+<script>
+    const register = document.querySelector('#Register') as HTMLFormElement
+
+  const form = document.querySelector('#form-login') as HTMLFormElement
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault()
+    
+    const formData = new FormData(e.target as HTMLFormElement)
+    const formObj = Object.fromEntries(formData.entries()) // Converts form data to JS object
+    const res = await fetch(`http://localhost:3600/users/login`, {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(formObj)
+    })
+    if (!res.ok) {
+      console.error("Login details are incorrect")
+      return
+    }
+    window.location.href = "/profile"
+  })
+</script>
+
+<style>
+     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&display=swap');
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    user-select: none;
+    color: white;
+}
+
+main {
+    background-image: url('https://cigars.roku.com/v1/http%3A%2F%2Fimage.roku.com%2Fw%2Frapid%2Fimages%2Foem-spotlight%2F0e000750-a24a-4c0c-a792-c11d152effaf.jpg');
+   background-size: cover;
+   background-position-x: 5%;
+    height: 100%;
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+header{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    background-color: white;
+    border-radius: 24px ;
+    padding: 0.5rem;
+    margin-top: 1rem;
+    
+}
+#Form-Layout{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10rem;
+}
+
+#O{
+    color: #4716F8;
+}
+
+#Title{
+    color: #FF00D0
+}
+
+#X{
+    color: #FF0000;
+}
+
+label{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    gap: 1rem;
+}
+
+input{
+    display: flex;
+    border-radius: 8px;
+    background-color: white;
+    border-radius: 24px ;
+    width: 14rem;
+    height: 4rem ;
+    border: 0px;
+    color: black;
+}
+
+#Login{
+    border-radius: 8px;
+    background-color: red;
+    border-radius: 24px ;
+    width: 14rem;
+    height: 4rem ;
+    border: 0px;
+    font-size: 2em;
+    margin-top: 3rem;
+    cursor: pointer;
+transition: 0.3s;
+}
+
+#Login:hover{
+   color:red;
+   background-color: white;
+   scale:1.2;
+   border: 1px solid red;
+   
+}
+
+#Register{
+    border-radius: 8px;
+    background-color: rgb(255, 0, 212);
+    border-radius: 24px ;
+    width: 14rem;
+    height: 9rem ;
+    border: 0px;
+    font-size: 2em;
+    margin-top: 3rem;
+    transition: 0.3s;
+    cursor: pointer;
+
+
+}
+#Register:hover{
+    color: rgb(255, 0, 212);
+    background-color: white;
+   scale:1.2;
+   border: 1px solid rgb(255, 0, 212);;
+   
+}
+
+</style>
+
+
+
+
