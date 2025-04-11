@@ -1,0 +1,167 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+    <main>
+    <header>
+  <h1>Create Account</h1>
+  </header>
+  <form id="form-signup">
+    <label>
+      Username:
+      <input type="text" name="username" placeholder="Enter username" required />
+    </label>
+    <label>
+      Password:
+      <input type="password" name="password" placeholder="Enter password" required />
+    </label>
+    <label>
+      First Name:
+      <input type="text" name="firstname" placeholder="Enter first name" required />
+    </label>
+    <label>
+      Last Name:
+      <input type="text" name="lastname" placeholder="Enter last name" required />
+    </label>
+    <button id="signId">Sign Up</button>
+    
+  </form>
+  <div id="backToLogin">
+    <p id="rQuestion">already have an account?</p>
+    <button onclick="window.location.href='/login'">Log in</button>
+  </div>
+</main>
+</Layout>
+
+<script>
+  const form = document.querySelector('#form-signup') as HTMLFormElement
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault()
+    
+    const formData = new FormData(e.target as HTMLFormElement)
+    const formObj = Object.fromEntries(formData.entries()) // Converts form data to JS object
+    const res = await fetch(`http://localhost:3600/users/signup`, {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(formObj)
+    })
+    if (!res.ok) {
+      console.error("Something went wrong")
+      return
+    }
+    window.location.href = "/login"
+  })
+</script>
+
+
+<style>
+
+main {
+    background-image: url('https://cigars.roku.com/v1/http%3A%2F%2Fimage.roku.com%2Fw%2Frapid%2Fimages%2Foem-spotlight%2F0e000750-a24a-4c0c-a792-c11d152effaf.jpg');
+   background-size: cover;
+   background-position-x: 5%;
+    height: 100%;
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+header{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    background-color: white;
+    border-radius: 24px ;
+    padding: 0.5rem;
+    margin-top: 1rem;
+    
+}
+#Form-Layout{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10rem;
+}
+
+label{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    gap: 1rem;
+    color: white;
+}
+
+input{
+    display: flex;
+    border-radius: 8px;
+    background-color: white;
+    border-radius: 24px ;
+    width: 14rem;
+    height: 4rem ;
+    border: 0px;
+    color: black;
+}
+
+#signId{
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: red;
+    border-radius: 24px ;
+    width: 14rem;
+    height: 4rem ;
+    border: 0px;
+    font-size: 2em;
+    margin-top: 3rem;
+    color: white;
+    transition: 0.3s;
+
+  }
+
+  #signId:hover{
+    color:red;
+   background-color: white;
+   scale:1.2;
+   border: 1px solid red;
+  }
+
+
+
+  #backToLogin{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  #rQuestion{
+    color: white;
+  
+  }
+    #backToLogin button{
+      color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: rgb(255, 0, 212);
+    border-radius: 24px ;
+    width: 14rem;
+    height: 4rem ;
+    border: 0px;
+    font-size: 2em; 
+    transition: 0.3s;
+  }
+
+    #backToLogin button:hover{
+      color:rgb(255, 0, 212);
+
+   background-color: white;
+   scale:1.2;
+   border: 1px solid rgb(255, 0, 212);    }
+</style>
