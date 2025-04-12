@@ -8,8 +8,16 @@ const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const mongoose_1 = __importDefault(require("mongoose"));
 const user_routes_1 = __importDefault(require("./routes/user.routes"));
+const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
+//Frontend
+app.use((0, cors_1.default)({
+    //Astro port
+    origin: "http://localhost:4321",
+    //Cookie transfer
+    credentials: true
+}));
 // Users
 app.use('/user', user_routes_1.default);
 //Welcome to my server
