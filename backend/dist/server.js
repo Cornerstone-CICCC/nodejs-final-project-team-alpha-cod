@@ -11,6 +11,7 @@ const user_routes_1 = __importDefault(require("./routes/user.routes"));
 const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
+app.use(express_1.default.urlencoded({ extended: true }));
 //Frontend
 app.use((0, cors_1.default)({
     //Astro port
@@ -32,14 +33,17 @@ if (!process.env.DATABASE_URI) {
     throw Error("Missing connection string");
 }
 mongoose_1.default
-    .connect(process.env.DATABASE_URI, { dbName: 'tictactoe' })
+    .connect(process.env.DATABASE_URI, {
+    dbName: 'tictactoe',
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
     .then(() => {
-    console.log(`Connected to MongoDB`);
+    console.log(`Connected to MongoDB: tictactoe`);
     app.listen(PORT, () => {
         console.log(`Server is running on http://localhost:${PORT}`);
     });
 })
     .catch(err => {
-    console.error(err);
-    throw err;
+    console.error('MongoDB connection error:', err);
 });

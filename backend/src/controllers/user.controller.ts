@@ -3,40 +3,31 @@ import bcrypt from 'bcrypt'
 import { User, IUser } from '../models/user.model'
 
 
-// Create new student
-const createUser = async (req: Request<{}, {}, IUser>, res: Response) => {
+//Signup User
+const signupUser = async (req: Request, res: Response) => {
   try {
-    const { firstname, lastname, age, email, password } = req.body
-    const user = await User.create({ firstname, lastname, age, email, password })
-    res.status(201).json(user)
+      console.log("Headers received:", req.headers);  // 🔍 Debug headers
+      console.log("Raw request body:", req.body);  // 🔍 Debug request body
+
+      if (!req.body || Object.keys(req.body).length === 0) {
+          return res.status(400).json({ message: "Request body is empty or malformed" });
+      }
+
+      const { firstname, lastname, age, email, password } = req.body;
+      console.log("Extracted user data:", firstname, lastname, age, email, password);
+
+      const hashedPassword = await bcrypt.hash(password, 10);
+      const user = await User.create({ firstname, lastname, age, email, password: hashedPassword });
+
+      res.status(201).json({ message: "User registered successfully", user });
   } catch (err) {
-    console.error(err)
-    res.status(500).json({ message: 'Unable to add user' })
+      console.error("Signup error:", err);
+      res.status(500).json({ message: "Signup failed", error: err.message });
   }
-}
-
-//Register User
-const registerUser = async (req: Request<{}, {}, IUser>, res: Response) => {
-    try {
-        const { firstname, lastname, age, email, password} = req.body;
-
-        //Hash the password
-        const hashedPassword = await bcrypt.hash(password, 10);
-
-        const user = await User.create({
-            firstname,
-            lastname,
-            age,
-            email,
-            password: hashedPassword,
-        });
-
-        res.status(201).json({ message: 'User registered successfully', user })
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ message: 'Signup failed' });
-    }
 };
+
+
+
 
 //Login User
 const loginUser = async (req: Request, res: Response) => {
@@ -57,7 +48,6 @@ const loginUser = async (req: Request, res: Response) => {
 };
 
 export default {
-  createUser,
-  registerUser,
+  signupUser,
   loginUser
 }

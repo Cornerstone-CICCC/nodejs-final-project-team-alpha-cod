@@ -5,9 +5,11 @@ import mongoose from 'mongoose'
 import userRouter from './routes/user.routes'
 import cors from 'cors'
 
-const app = express()
+const app = express();
 
-app.use(express.json())
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 
 //Frontend
 app.use(cors({
@@ -16,6 +18,7 @@ app.use(cors({
   //Cookie transfer
   credentials: true
 }));
+
 
 // Users
 app.use('/user', userRouter)
@@ -30,21 +33,22 @@ app.use((req: Request, res: Response) => {
 })
 
 
-
 const PORT = process.env.PORT || 3000
 if (!process.env.DATABASE_URI) {
   throw Error("Missing connection string")
 }
 
 mongoose
-  .connect(process.env.DATABASE_URI, { dbName: 'tictactoe' })
+  .connect(process.env.DATABASE_URI, { 
+    dbName: 'tictactoe', 
+    useNewUrlParser: true, 
+    useUnifiedTopology: true })
   .then(() => {
-    console.log(`Connected to MongoDB`)
+    console.log(`Connected to MongoDB: tictactoe`);
     app.listen(PORT, () => {
       console.log(`Server is running on http://localhost:${PORT}`)
-    })
+    });
   })
   .catch(err => {
-    console.error(err)
-    throw err
+    console.error('MongoDB connection error:', err)
   })

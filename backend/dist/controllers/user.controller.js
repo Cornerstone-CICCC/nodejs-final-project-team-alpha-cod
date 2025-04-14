@@ -14,36 +14,23 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const user_model_1 = require("../models/user.model");
-// Create new student
-const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+//Signup User
+const signupUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        console.log("Headers received:", req.headers); // 🔍 Debug headers
+        console.log("Raw request body:", req.body); // 🔍 Debug request body
+        if (!req.body || Object.keys(req.body).length === 0) {
+            return res.status(400).json({ message: "Request body is empty or malformed" });
+        }
         const { firstname, lastname, age, email, password } = req.body;
-        const user = yield user_model_1.User.create({ firstname, lastname, age, email, password });
-        res.status(201).json(user);
-    }
-    catch (err) {
-        console.error(err);
-        res.status(500).json({ message: 'Unable to add user' });
-    }
-});
-//Register User
-const registerUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const { firstname, lastname, age, email, password } = req.body;
-        //Hash the password
+        console.log("Extracted user data:", firstname, lastname, age, email, password);
         const hashedPassword = yield bcrypt_1.default.hash(password, 10);
-        const user = yield user_model_1.User.create({
-            firstname,
-            lastname,
-            age,
-            email,
-            password: hashedPassword,
-        });
-        res.status(201).json({ message: 'User registered successfully', user });
+        const user = yield user_model_1.User.create({ firstname, lastname, age, email, password: hashedPassword });
+        res.status(201).json({ message: "User registered successfully", user });
     }
     catch (err) {
-        console.error(err);
-        res.status(500).json({ message: 'Signup failed' });
+        console.error("Signup error:", err);
+        res.status(500).json({ message: "Signup failed", error: err.message });
     }
 });
 //Login User
@@ -64,7 +51,6 @@ const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.default = {
-    createUser,
-    registerUser,
+    signupUser,
     loginUser
 };
