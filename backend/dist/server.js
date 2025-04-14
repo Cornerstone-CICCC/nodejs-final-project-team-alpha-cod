@@ -4,30 +4,33 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const dotenv_1 = __importDefault(require("dotenv"));
-dotenv_1.default.config();
+const http_1 = require("http");
+const socket_io_1 = require("socket.io");
 const mongoose_1 = __importDefault(require("mongoose"));
+const dotenv_1 = __importDefault(require("dotenv"));
+const socket_handler_1 = require("./sockets/socket.handler");
+dotenv_1.default.config();
 const app = (0, express_1.default)();
-app.use(express_1.default.json());
-//Routes
-app.get('/', (req, res) => {
-    res.status(200).send('Welcome to my server');
+const ioServer = (0, http_1.createServer)(app);
+const io = new socket_io_1.Server(ioServer, {
+    cors: {
+        origin: 'http://localhost:4321',
+        methods: ['GET', 'POST']
+    }
 });
-app.use((req, res) => {
-    res.status(404).send('Invalid route!');
-});
-//Connect to server
-const PORT = process.env.PORT || 3000;
-const MONGODB_URI = process.env.DATABASE_URI;
-mongoose_1.default
-    .connect(MONGODB_URI, { dbName: 'tictactoe' })
+// Conexión a MongoDB
+const MONGO_URI = process.env.DATABASE_URI || 'mongodb://localhost:27017/chatapp';
+mongoose_1.default.connect(MONGO_URI)
     .then(() => {
-    console.log(`Connected to MongoDB`);
-    app.listen(PORT, () => {
-        console.log(`Server is running on http://localhost:${PORT}`);
+    console.log('Connected to MongoDB');
+    // Solo arrancamos el servidor si MongoDB está conectado
+    const PORT = 3500;
+    ioServer.listen(PORT, () => {
+        console.log(`Server running at http://localhost:${PORT}`);
     });
 })
-    .catch(err => {
-    console.error(err);
-    throw err;
+    .catch((err) => {
+    console.error('MongoDB connection error:', err);
 });
+// Iniciar sockets
+(0, socket_handler_1.socketHandler)(io);
