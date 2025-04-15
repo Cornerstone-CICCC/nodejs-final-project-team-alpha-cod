@@ -14,43 +14,81 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const user_model_1 = require("../models/user.model");
-//Signup User
-const signupUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+// Create new student
+const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        console.log("Headers received:", req.headers); // 🔍 Debug headers
-        console.log("Raw request body:", req.body); // 🔍 Debug request body
-        if (!req.body || Object.keys(req.body).length === 0) {
-            return res.status(400).json({ message: "Request body is empty or malformed" });
-        }
         const { firstname, lastname, age, email, password } = req.body;
-        console.log("Extracted user data:", firstname, lastname, age, email, password);
-        const hashedPassword = yield bcrypt_1.default.hash(password, 10);
-        const user = yield user_model_1.User.create({ firstname, lastname, age, email, password: hashedPassword });
-        res.status(201).json({ message: "User registered successfully", user });
-    }
-    catch (err) {
-        console.error("Signup error:", err);
-        res.status(500).json({ message: "Signup failed", error: err.message });
-    }
-});
-//Login User
-const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const { email, password } = req.body;
-        const user = yield user_model_1.User.findOne({ email });
-        if (!user)
-            return res.status(400).json({ message: "User not found" });
-        const isMatch = yield bcrypt_1.default.compare(password, user.password);
-        if (!isMatch)
-            return res.status(400).json({ message: "Invalid password" });
-        res.status(200).json({ message: 'Login successful' });
+        const user = yield user_model_1.User.create({ firstname, lastname, age, email, password });
+        res.status(201).json(user);
     }
     catch (err) {
         console.error(err);
-        res.status(500).json({ message: 'Login failed ' });
+        res.status(500).json({ message: 'Unable to add user' });
     }
 });
+//Register User
+const registerUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { firstname, lastname, age, email, password } = req.body;
+        //Hash the password
+        const hashedPassword = yield bcrypt_1.default.hash(password, 10);
+        const user = yield user_model_1.User.create({
+            firstname,
+            lastname,
+            age,
+            email,
+            password: hashedPassword,
+        });
+        res.status(201).json({ message: 'User registered successfully', user });
+    }
+    catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Signup failed' });
+    }
+});
+//Login User
+/**
+   * Logs in user
+   *
+   * @param {Request<{}, {}, Omit<User, 'id'>>} req
+   * @param {Response} res
+   * @returns {void} Checks username and password and set session cookie.
+   */
+const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { firstname, password } = req.body;
+    const user = yield firstname;
+    if (!user) {
+        res.status(500).json({ message: "Username/password is incorrect!" });
+        return;
+    }
+    if (req.session) {
+        req.session.isLoggedIn = true;
+        req.session.username = user_model_1.User;
+    }
+    res.status(200).json(user);
+});
+/**
+ * Find user by username
+ *
+ * @param {Request} req
+ * @param {Response} res
+ * @returns {void} checks for username in cookie session and returns user object
+ */
+const getUserByUsername = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    if (req.session && req.session.username) {
+        const user = user_model_1.User.find(req.session.username);
+        if (!user) {
+            res.status(404).json({ message: "User not foun!" });
+            return;
+        }
+        res.status(200).json(user);
+        return;
+    }
+    res.status(403).json({ message: "Forbidden" });
+});
 exports.default = {
-    signupUser,
-    loginUser
+    createUser,
+    registerUser,
+    loginUser,
+    getUserByUsername
 };

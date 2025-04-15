@@ -3,51 +3,89 @@ import bcrypt from 'bcrypt'
 import { User, IUser } from '../models/user.model'
 
 
-//Signup User
-const signupUser = async (req: Request, res: Response) => {
+// Create new student
+const createUser = async (req: Request<{}, {}, IUser>, res: Response) => {
   try {
-      console.log("Headers received:", req.headers);  // 🔍 Debug headers
-      console.log("Raw request body:", req.body);  // 🔍 Debug request body
-
-      if (!req.body || Object.keys(req.body).length === 0) {
-          return res.status(400).json({ message: "Request body is empty or malformed" });
-      }
-
-      const { firstname, lastname, age, email, password } = req.body;
-      console.log("Extracted user data:", firstname, lastname, age, email, password);
-
-      const hashedPassword = await bcrypt.hash(password, 10);
-      const user = await User.create({ firstname, lastname, age, email, password: hashedPassword });
-
-      res.status(201).json({ message: "User registered successfully", user });
+    const { firstname, lastname, age, email, password } = req.body
+    const user = await User.create({ firstname, lastname, age, email, password })
+    res.status(201).json(user)
   } catch (err) {
-      console.error("Signup error:", err);
-      res.status(500).json({ message: "Signup failed", error: err.message });
+    console.error(err)
+    res.status(500).json({ message: 'Unable to add user' })
   }
-};
+}
 
-
-
-
-//Login User
-const loginUser = async (req: Request, res: Response) => {
+//Register User
+const registerUser = async (req: Request<{}, {}, IUser>, res: Response) => {
     try {
-        const { email, password } = req.body;
-        const user = await User.findOne({ email });
+        const { firstname, lastname, age, email, password} = req.body;
 
-        if(!user) return res.status(400).json({ message: "User not found" })
+        //Hash the password
+        const hashedPassword = await bcrypt.hash(password, 10);
 
-        const isMatch = await bcrypt.compare(password, user.password)
-        if(!isMatch) return res.status(400).json({ message: "Invalid password"})
+        const user = await User.create({
+            firstname,
+            lastname,
+            age,
+            email,
+            password: hashedPassword,
+        });
 
-        res.status(200).json({ message: 'Login successful' });
+        res.status(201).json({ message: 'User registered successfully', user })
     } catch (err) {
         console.error(err);
-        res.status(500).json({ message: 'Login failed '});
+        res.status(500).json({ message: 'Signup failed' });
     }
-};
+}
+
+//Login User
+/**
+   * Logs in user
+   * 
+   * @param {Request<{}, {}, Omit<User, 'id'>>} req
+   * @param {Response} res
+   * @returns {void} Checks username and password and set session cookie.
+   */
+const loginUser = async (req: Request<{}, {}, Omit<IUser, 'User'>>, res: Response) => {
+  const { firstname, password } = req.body
+  const user = await firstname
+  if (!user) {
+    res.status(500).json({ message: "Username/password is incorrect!" })
+    return
+  }
+  if (req.session) {
+    req.session.isLoggedIn = true
+    req.session.username = User
+  }
+  res.status(200).json(user)
+}
+
+/**
+ * Find user by username
+ * 
+ * @param {Request} req
+ * @param {Response} res
+ * @returns {void} checks for username in cookie session and returns user object
+ */
+const getUserByUsername = async (req: Request, res: Response) => {
+  if (req.session && req.session.username) {
+      const user = User.find(req.session.username)
+      if (!user) {
+          res.status(404).json({message:"User not foun!"})
+          return
+
+      }
+      res.status(200).json(user)
+      return
+  } 
+  res.status(403).json({message:"Forbidden"})
+}
+
 
 export default {
-  signupUser,
-  loginUser
+  createUser,
+  registerUser,
+  loginUser,
+  getUserByUsername
+
 }
