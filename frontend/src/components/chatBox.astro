@@ -9,7 +9,7 @@
   
     <form class="chat-form" id="chat-form">
       <input type="text" id="chat-input" placeholder="Type a message..." />
-      <button type="submit">SEND</button>
+      <button class="send" type="submit">SEND</button>
     </form>
   </div>
   
@@ -114,4 +114,33 @@ if (!form || !input || !messages) return; // Detiene si algo no se encontró
     padding: 0.4rem;
     border-left: 2px solid #00ffff;
   }
+
+
+  @media (max-width: 480px) {
+  .chat-form {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+
+  .send{
+  width: 5px;
+  margin-left: 0px;
+  
+}
+
+input{
+    margin-left: -12px;
+}
+
+  .chat-form input[type="text"],
+  .chat-form button {
+    width: 100%;
+  }
+}
+
+
+
+
+
 </style>
