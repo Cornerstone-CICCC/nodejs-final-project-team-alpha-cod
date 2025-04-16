@@ -1,0 +1,117 @@
+
+
+---
+// Este es un componente visual, aún no tiene lógica de envío
+---
+
+<div class="chat-box">
+    <div class="messages-area" id="messages"></div>
+  
+    <form class="chat-form" id="chat-form">
+      <input type="text" id="chat-input" placeholder="Type a message..." />
+      <button type="submit">SEND</button>
+    </form>
+  </div>
+  
+  <script>
+    // Esto corre en el navegador
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('chat-form') as HTMLFormElement | null;
+const input = document.getElementById('chat-input') as HTMLInputElement | null;
+const messages = document.getElementById('messages') as HTMLDivElement | null;
+
+if (!form || !input || !messages) return; // Detiene si algo no se encontró
+  
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+  
+        const text = input.value.trim();
+        if (!text) return;
+  
+        const msg = document.createElement('div');
+        msg.className = 'message';
+        msg.textContent = text;
+  
+        messages.appendChild(msg);
+        input.value = '';
+        messages.scrollTop = messages.scrollHeight;
+      });
+    });
+  </script>
+
+
+<style>
+:global(body) {
+  margin: 0;
+  background-color: #0d1b2a;
+  background-image: url('/bg-pixels.png');
+  background-repeat: repeat;
+  background-size: 200px;
+  font-family: 'Press Start 2P', monospace;
+}
+
+.chat-box {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 2rem;
+    gap: 1rem;
+  }
+
+  .messages-area {
+    width: 320px;
+    min-height: 40px;
+    max-height: 50px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border: 3px solid #00aaff;
+    box-shadow: inset 0 0 0 2px #00ffff;
+    background-color: #102030;
+    color: #d4cfc9;
+    padding: 1rem;
+    font-size: 0.8rem;
+  }
+
+  .chat-form {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  input[type="text"] {
+    padding: 0.6rem;
+    width: 220px;
+    border: 3px solid #00aaff;
+    box-shadow: inset 0 0 0 2px #00ffff;
+    background-color: #0d1b2a;
+    color: #d4cfc9;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.7rem;
+  }
+
+  button {
+    padding: 0.6rem 1rem;
+    border: 3px solid #00aaff;
+    box-shadow: inset 0 0 0 2px #00ffff;
+    background-color: #0d1b2a;
+    color: #d4cfc9;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #d48600;
+    color: black;
+  }
+
+  .message {
+    background: #1d2b3a;
+    padding: 0.4rem;
+    border-left: 2px solid #00ffff;
+  }
+</style>
