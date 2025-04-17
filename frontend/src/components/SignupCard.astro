@@ -1,0 +1,62 @@
+---
+---
+
+<!--SignUp Form -->
+
+<div class="container signup">
+    <div class="container title">
+        <h1>SignUp</h1>
+        <p id="main-p">Fill out the form and create your profile</p>
+        <p>Already a player? 
+            <button class="btn btnAccess" aria-label="log-in">
+                <a href="/login">Login</a>
+            </button>
+        </p>
+    </div>
+    <!--Form -->
+    <div class="container form">
+        <form id="signup-form" action="#" method="post">
+            <fieldset>
+                <!--Firstname -->
+                <label for="firstname">
+                    Enter your firstname: <input required id="firstname" type="text" name="firstname" placeholder="First Name" autocomplete="given-name">
+                </label>
+                <!--Lastname -->
+                <label for="lastname">
+                    Enter your lastname: <input required id="lastname" type="text" name="lastname" placeholder="Last Name" autocomplete="family-name">
+                </label>
+                <!--Age -->
+                <label for="age">
+                    Enter your age: <input required id="age" type="number" name="age" placeholder="Age" autocomplete="bday-year">
+                </label>
+                <!--Email-->
+                <label for="email">
+                    Enter your email: <input required id="email" type="email" name="email" placeholder="Email" autocomplete="email">
+                </label>
+                <!--Password -->
+                <label for="password">
+                    Enter your password: <input required id="password" type="password" name="password" placeholder="Password" autocomplete="new-password">
+                </label>
+            </fieldset>
+
+            <!--Profile Picture -->
+            <fieldset>
+                <!--Upload a profile picture -->
+                <label for="profile-picture">
+                    Upload a profile picture: 
+                    <input id="profile-picture" type="file" name="file">
+                </label>
+            </fieldset>
+
+            <!--Terms and Conditions -->
+                <label for="terms-and-conditions">
+                    <input class="inline" id="terms-and-conditions" type="checkbox" required />I accept the <a href="#">terms and conditions</a>
+                </label>
+            
+            <!--SignUp -->
+            <button class="btn btnAccess" aria-label="log-in">
+                <a href="/login">Signup</a>
+            </button>
+          </form>
+    </div>
+</div>

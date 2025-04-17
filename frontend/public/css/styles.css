@@ -1,3 +1,238 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@font-face {
+  font-family: "BarcadeItalic-wzZz";
+  src: url("/fonts/barcade-font/BarcadeItalic-wzZz.otf") format("truetype");
+}
+@font-face {
+  font-family: "BarcadeNoBar-mzD9";
+  src: url("/fonts/barcade-font/BarcadeNoBar-mzD9.otf") format("truetype");
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.signup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-image: url("/images/background.png");
+  background-size: cover;
+  padding: 20px;
+}
+.signup .title {
+  margin: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.signup .title h1 {
+  font-family: "BarcadeItalic-wzZz", sand-serif;
+  font-size: 3rem;
+  color: #e9cea3;
+}
+.signup .title #main-p {
+  font-family: "Kanit", sans-serif;
+  font-size: 1rem;
+  color: #e9cea3;
+}
+.signup .title p {
+  font-family: "Kanit", sans-serif;
+  font-size: 1rem;
+  color: #e9cea3;
+}
+.signup .title p button {
+  background-color: black;
+}
+.signup .title p button a {
+  background-color: transparent;
+  transition: border-width 0.6s linear;
+  font-size: 1.5rem;
+  font-family: "BarcadeNoBar-mzD9", sand-serif;
+  text-decoration: none;
+  color: #e9cea3;
+}
+.signup .title p button:hover {
+  transform: scale(1.5);
+}
+.signup .form {
+  background-color: #0e333c;
+  border: solid 5px white;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 50%;
+  padding: 15px;
+}
+.signup .form form {
+  margin: 0 auto;
+  max-width: 500px;
+  min-width: 300px;
+  width: 60vw;
+  padding: 2em;
+}
+.signup .form form fieldset {
+  border: none;
+  padding: 2rem 0;
+}
+.signup .form form fieldset label {
+  display: block;
+  font-family: "Kanit", sans-serif;
+  font-size: 1rem;
+  color: #e9cea3;
+  margin: 0.5rem 0;
+}
+.signup .form form fieldset label input {
+  width: 100%;
+  margin: 10px 0 0 0;
+  min-height: 2em;
+}
+.signup .form form label[for=terms-and-conditions] {
+  font-family: "Kanit", sans-serif;
+  color: #e9cea3;
+}
+.signup .form form label[for=terms-and-conditions] a {
+  font-family: "Kanit", sans-serif;
+  color: #e9cea3;
+  font-weight: bold;
+}
+.signup .form form .btnAccess {
+  display: block;
+  margin: 1em auto;
+  min-width: 300px;
+  width: 60%;
+  font-size: 1.1rem;
+  background-color: transparent;
+  font-size: 1.5rem;
+  font-family: "BarcadeNoBar-mzD9", sand-serif;
+}
+.signup .form form .btnAccess a {
+  color: #e9cea3;
+  text-decoration: none;
+}
+.signup .form form .btnAccess:hover {
+  transform: scale(1.5);
+}
+
+@font-face {
+  font-family: "BarcadeItalic-wzZz";
+  src: url("/fonts/barcade-font/BarcadeItalic-wzZz.otf") format("truetype");
+}
+@font-face {
+  font-family: "BarcadeNoBar-mzD9";
+  src: url("/fonts/barcade-font/BarcadeNoBar-mzD9.otf") format("truetype");
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-image: url("/images/background.png");
+  background-size: cover;
+  padding: 20px;
+  height: 100%;
+}
+.login .title {
+  margin: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.login .title h1 {
+  font-family: "BarcadeItalic-wzZz", sand-serif;
+  font-size: 3rem;
+  color: #e9cea3;
+}
+.login .title #main-p {
+  font-family: "Kanit", sans-serif;
+  font-size: 1rem;
+  color: #e9cea3;
+}
+.login .title p {
+  font-family: "Kanit", sans-serif;
+  font-size: 1rem;
+  color: #e9cea3;
+}
+.login .title p button {
+  background-color: black;
+}
+.login .title p button a {
+  background-color: transparent;
+  transition: border-width 0.6s linear;
+  font-size: 1.5rem;
+  font-family: "BarcadeNoBar-mzD9", sand-serif;
+  text-decoration: none;
+  color: #e9cea3;
+}
+.login .title p button:hover {
+  transform: scale(1.5);
+}
+.login .form {
+  background-color: #0e333c;
+  border: solid 5px white;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 50%;
+  padding: 15px;
+}
+.login .form form {
+  margin: 0 auto;
+  max-width: 500px;
+  min-width: 300px;
+  width: 60vw;
+  padding: 2em;
+}
+.login .form form fieldset {
+  border: none;
+  padding: 2rem 0;
+}
+.login .form form fieldset label {
+  display: block;
+  font-family: "Kanit", sans-serif;
+  font-size: 1rem;
+  color: #e9cea3;
+  margin: 0.5rem 0;
+}
+.login .form form fieldset label input {
+  width: 100%;
+  margin: 10px 0 0 0;
+  min-height: 2em;
+}
+.login .form form label[for=terms-and-conditions] {
+  color: #e9cea3;
+}
+.login .form form label[for=terms-and-conditions] a {
+  color: #e9cea3;
+  font-weight: bold;
+}
+.login .form form .btnAccess {
+  display: block;
+  margin: 1em auto;
+  min-width: 300px;
+  width: 60%;
+  font-size: 1.1rem;
+  background-color: transparent;
+  font-size: 1.5rem;
+  font-family: "BarcadeNoBar-mzD9", sand-serif;
+}
+.login .form form .btnAccess a {
+  color: #e9cea3;
+  text-decoration: none;
+}
+.login .form form .btnAccess:hover {
+  transform: scale(1.5);
+}
+
 @font-face {
   font-family: "BarcadeItalic-wzZz";
   src: url("/fonts/barcade-font/BarcadeItalic-wzZz.otf") format("truetype");
@@ -10,15 +245,13 @@
   box-sizing: border-box;
 }
 
-body {
-  background-image: url("/public/images/background.png");
-}
-
 .access-card {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background-image: url("/public/images/background.png");
+  background-size: cover;
 }
 .access-card .card {
   background-color: #0e333c;

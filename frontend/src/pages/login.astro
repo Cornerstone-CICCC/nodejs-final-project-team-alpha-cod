@@ -1,56 +1,11 @@
 ---
+import LoginCard from '../components/LoginCard.astro';
+import Layout from '../layouts/Layout.astro';
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<div class="container">
-    <h2>Login</h2>
-    <form id="login-form">
-      <input type="email" id="login-email" placeholder="Email" required>
-      <input type="password" id="login-password" placeholder="Password" required>
-      <button onclick="loginUser()">Login</button>
-      <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
-    </form>
-  </div>
-
-
-  <style>
-    body {
-  font-family: Arial, sans-serif;
-  background: #f4f4f4;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-.container {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  text-align: center;
-  width: 300px;
-}
-
-input, button {
-  width: 100%;
-  padding: 10px;
-  margin: 8px 0;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-button {
-  background: #4CAF50;
-  color: white;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #45a049;
-}
-
-p {
-  font-size: 14px;
-}
-
-  </style>
+<Layout>
+	<LoginCard/>
+</Layout>
