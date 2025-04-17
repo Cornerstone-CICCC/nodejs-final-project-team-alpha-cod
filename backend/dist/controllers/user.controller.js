@@ -56,12 +56,6 @@ const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const isMatch = yield bcrypt_1.default.compare(password, user.password);
         if (!isMatch)
             return res.status(400).json({ message: "Invalid password" });
-        /// cookie
-        res.cookie('userId', user._id.toString(), {
-            httpOnly: true,
-            sameSite: 'lax',
-            maxAge: 24 * 60 * 60 * 1000
-        });
         res.status(200).json({ message: 'Login successful' });
     }
     catch (err) {

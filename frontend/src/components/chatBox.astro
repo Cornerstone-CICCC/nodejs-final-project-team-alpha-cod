@@ -13,31 +13,47 @@
     </form>
   </div>
   
-  <script>
-    // Esto corre en el navegador
-    document.addEventListener('DOMContentLoaded', () => {
-        const form = document.getElementById('chat-form') as HTMLFormElement | null;
-const input = document.getElementById('chat-input') as HTMLInputElement | null;
-const messages = document.getElementById('messages') as HTMLDivElement | null;
-
-if (!form || !input || !messages) return; // Detiene si algo no se encontró
+  <script type="module">
+    import { io } from "https://cdn.socket.io/4.8.1/socket.io.esm.min.js";
   
-      form.addEventListener('submit', (e) => {
+    const socket = io("http://localhost:3500");
+  
+    // Guardamos el nombre del usuario localmente
+    const username = prompt("Enter your username")?.trim() || `User${Math.floor(Math.random() * 1000)}`;
+  
+    socket.on("connect", () => {
+      console.log("Connected:", socket.id);
+    });
+  
+    document.addEventListener("DOMContentLoaded", () => {
+      const form = document.querySelector("#chat-form");
+      const input = document.querySelector("#chat-input");
+      const messages = document.querySelector("#messages");
+  
+      if (!form || !input || !messages) return;
+  
+      form.addEventListener("submit", (e) => {
         e.preventDefault();
   
-        const text = input.value.trim();
-        if (!text) return;
+        const message = input.value.trim();
+        if (!message) return;
   
-        const msg = document.createElement('div');
-        msg.className = 'message';
-        msg.textContent = text;
+        // Emitimos el mensaje con el username
+        socket.emit("chat", { username, message });
+        input.value = "";
+      });
   
-        messages.appendChild(msg);
-        input.value = '';
+      socket.on("chat", (data) => {
+        const div = document.createElement("div");
+        const sender = data.username === username ? "You" : data.username || "System";
+        div.innerHTML = `<strong style="color: cyan;">${sender}:</strong> ${data.message}`;
+        messages.appendChild(div);
         messages.scrollTop = messages.scrollHeight;
       });
     });
   </script>
+  
+  
 
 
 <style>
@@ -138,9 +154,4 @@ input{
     width: 100%;
   }
 }
-
-
-
-
-
 </style>

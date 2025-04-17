@@ -6,12 +6,14 @@ export const handleSocketEvents = (
   users: Record<string, string>
 ) => {
   socket.emit('chat', {
-    message: 'Welcome to our amazing chat! Have fun!'
-  })
+    username: 'System',
+    message: 'Welcome to our chat! Have fun!'
+  });
 
   socket.broadcast.emit('chat', {
-    message: `A new user just joined chat`
-  })
+    username: 'System',
+    message: 'A new user just joined the chat.'
+  });
 
   // Listening for new updates to chat event
   socket.on('chat', (data) => {
@@ -23,9 +25,15 @@ export const handleSocketEvents = (
   })
 
   socket.on('disconnect', () => {
-    console.log(`${socket.id} has disconnected :(`)
+    console.log(`${socket.id} has disconnected :(`); // ← aquí faltaba cerrar correctamente
+  
+    const username = users[socket.id] || 'A user';
+  
     io.emit('chat', {
-      message: `${users[socket.id]} just left chat.`
-    })
-  })
+      username: 'System',
+      message: `${username} just left the chat.`
+    });
+  
+    delete users[socket.id]; // ← también recuerda limpiar el registro del usuario
+  });
 }
