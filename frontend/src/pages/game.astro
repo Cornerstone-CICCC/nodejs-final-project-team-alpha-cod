@@ -14,6 +14,9 @@ import Layout from "../layouts/Layout.astro"
     import { io } from "https://cdn.socket.io/4.8.1/socket.io.esm.min.js"
 	const socket = io('http://localhost:3500') // backend url
 
-     
+    const systMessage = document.querySelector('#system')
+    io.on('connect', () => {
+        
+    })
         
 </script>
