@@ -16,7 +16,7 @@ const app = express();
 //front
 
 app.use(cors({
-    origin: 'http://localhost:4321',
+    origin: 'http://localhost:4322',
     credentials: true
 }));
 
