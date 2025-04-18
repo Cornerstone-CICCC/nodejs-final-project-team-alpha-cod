@@ -15,8 +15,10 @@ import Layout from "../layouts/Layout.astro"
 	const socket = io('http://localhost:3500') // backend url
 
     const systMessage = document.querySelector('#system')
-    io.on('connect', () => {
-        
+    socket.on('connect', () => {
+        console.log("Connected to server", socket.id);
+        if (systMessage) {
+        systMessage.innerHTML = "Welcome!"
+        }
     })
-        
 </script>
