@@ -30,7 +30,7 @@ const signupUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
     catch (err) {
         console.error("Signup error:", err);
-        res.status(500).json({ message: "Signup failed", error: err.message });
+        res.status(500).json({ message: "Signup failed", error: err });
     }
 });
 //Login User

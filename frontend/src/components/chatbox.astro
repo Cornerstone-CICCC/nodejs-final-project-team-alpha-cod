@@ -1,0 +1,170 @@
+
+
+---
+// Este es un componente visual, aún no tiene lógica de envío
+---
+
+<div class="chat-box">
+    <div class="messages-area" id="messages"></div>
+  
+    <form class="chat-form" id="chat-form">
+      <input type="text" id="chat-input" placeholder="Type a message..." />
+      <button class="send" type="submit">SEND</button>
+    </form>
+  </div>
+  
+  <script type="module">
+    import { io } from "https://cdn.socket.io/4.8.1/socket.io.esm.min.js";
+  
+    const socket = io("http://localhost:3600");
+  
+    // Guardamos el nombre del usuario localmente
+    const username = prompt("Enter your username")?.trim() || `User${Math.floor(Math.random() * 1000)}`;
+  
+    socket.on("connect", () => {
+      console.log("Connected:", socket.id);
+    });
+  
+    document.addEventListener("DOMContentLoaded", () => {
+      const form = document.querySelector("#chat-form");
+      const input = document.querySelector("#chat-input");
+      const messages = document.querySelector("#messages");
+  
+      if (!form || !input || !messages) return;
+  
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+  
+        const message = input.value.trim();
+        if (!message) return;
+  
+        // Emitimos el mensaje con el username
+        socket.emit("chat", { username, message });
+        input.value = "";
+      });
+  
+      socket.on("chat", (data) => {
+        const div = document.createElement("div");
+        const sender = data.username === username ? "You" : data.username || "System";
+        div.innerHTML = `<img src = "https://robohash.org/${data.username}/?set=set4" width = 50px <strong style="color: cyan;">${sender}:</strong> ${data.message}`;
+        messages.appendChild(div);
+        messages.scrollTop = messages.scrollHeight;
+      });
+    });
+  </script>
+  
+  
+
+
+<style>
+:global(body) {
+  margin: 0;
+  background-color: #0d1b2a;
+  background-image: url('images/bg-pixels.png');
+  background-repeat: repeat;
+  background-size: 200px;
+  font-family: 'Press Start 2P', monospace;
+}
+
+.chat-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 2rem;
+  gap: 1rem;
+}
+
+  .messages-area {
+    width: 320px;
+    min-height: 10rem;
+    max-height: 50px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border: 3px solid #00aaff;
+    box-shadow: inset 0 0 0 2px #00ffff;
+    background-color: #102030;
+    color: #d4cfc9;
+    padding: 1rem;
+    font-size: 0.8rem;
+  }
+
+  .chat-form {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  input[type="text"] {
+    padding: 0.6rem;
+    width: 220px;
+    border: 3px solid #00aaff;
+    box-shadow: inset 0 0 0 2px #00ffff;
+    background-color: #0d1b2a;
+    color: #d4cfc9;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.7rem;
+  }
+
+  button {
+    padding: 0.6rem 1rem;
+    border: 3px solid #00aaff;
+    box-shadow: inset 0 0 0 2px #00ffff;
+    background-color: #0d1b2a;
+    color: #d4cfc9;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #d48600;
+    color: black;
+  }
+
+  .message {
+    background: #1d2b3a;
+    padding: 0.4rem;
+    border-left: 2px solid #00ffff;
+  }
+
+
+  @media (max-width: 480px) {
+  .chat-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  .messages-area {
+    width: 90%;
+    max-height: 100px;
+  }
+
+  .chat-form {
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    gap: 0.5rem;
+  }
+
+  .chat-form input[type="text"],
+  .chat-form button {
+    width: 100%;
+    margin: 0;
+  }
+
+  .send {
+    width: 100%;
+  }
+
+  input {
+    margin: 0;
+  }
+}
+</style>

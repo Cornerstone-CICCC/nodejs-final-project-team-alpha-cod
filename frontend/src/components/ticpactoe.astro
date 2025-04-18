@@ -1,0 +1,446 @@
+---
+---
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+<body>
+
+    <main>
+        <header id="header">
+            <div class="tic-tac-toe-intro">
+        <h1 class="title">TICTACTOE</h1>
+        <p class="subtitle">THE INFINITE TIC-TAC-TOE GAME,<br />UNTIL SOMEONE WINS!</p>
+        
+
+            <h3 id="titleHeader">Choose</h3>
+            <div id="Token">
+                <div class="player player-active"
+                id="xPlayerDisplay">
+                X
+                </div>
+                <div class="player"
+                id="oPlayerDisplay">
+                O
+                </div>
+            </div>
+
+        </header>
+
+        <div id="board">
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+        </div>
+        
+
+        <div class="player1">
+            <li><p>🔥<span id="username" onclick="window.location.href='/profile'"></span>🔥</p></li>
+            
+        </div>
+
+        <div><span id="pointsDisplay"></span></div>
+
+
+        <button id="restartBtn">
+            <img src="../../public/undo.png" alt="UndoIcon" width="100" height="100">
+        </button>
+
+        <button id="logout">
+            <a href="/logout">Logout</a>
+        </button>
+    </main>
+
+    <script>
+
+//********************** */
+// const pointsDisplay = document.createElement('div'); // Create a div to display points
+// pointsDisplay.id = 'pointsDisplay';
+// document.body.appendChild(pointsDisplay); // Add it to the page
+
+// const fetchPoints = async () => {
+//     try {
+//         const res = await fetch('http://localhost:3600/points/fetching', {
+//             method: 'GET',
+//             credentials: 'include'
+//         })
+        
+//         if (!res.ok) {
+//             throw new Error('Failed to fetch points');
+//         }
+
+//         const data = await res.json();
+//         pointsDisplay.innerText = `Points: ${data.points}`; // Update the UI
+//     } catch (error) {
+//         console.error('Error fetching points:', error);
+//     }
+// }
+
+// fetchPoints()
+
+// const pointsDisplay = document.getElementById('pointsDisplay') as HTMLElement;
+
+// function updatePoints(winner: string) {
+//     if (!pointsDisplay) return;
+
+//     // Extract current points from the display
+//     let currentPoints = pointsDisplay.textContent ? parseInt(pointsDisplay.textContent.replace("Points: ", ""), 10) || 0 : 0;
+
+//     if (winner === "X" || winner === "O") {
+//         currentPoints += 10; // Add points for the winner
+//     } else {
+//         currentPoints -= 20; // Deduct points if it's a draw
+//     }
+
+//     // Update UI
+//     pointsDisplay.textContent = `Points: ${currentPoints}`;
+// }
+// function declareWinner(winningIndices: number[]) {
+//     if (titleHeader) {
+//         titleHeader.textContent = `${player} Wins!`;
+//     }
+//     isPauseGame = true;
+//     winningIndices.forEach(index =>
+//         (cells[index] as HTMLElement).style.background = '#2A2343'
+//     );
+//     if (restartBtn) {
+//         (restartBtn as HTMLElement).style.visibility = 'visible';
+//     }
+
+//     updatePoints(player);
+// }
+
+
+
+//**************** */
+
+//         const profile = document.querySelector('.player1') as HTMLDivElement
+
+// const checkAuth = async () => {
+//   const res = await fetch(`http://localhost:3600/users/check-auth`, {
+//     method: "GET",
+//     credentials: "include"
+//   })
+//   if (!res.ok) {
+//     window.location.href = "/login"
+//     return
+//   }
+//   const data = await res.json()
+//   profile.style.display = "block";
+//   (profile.querySelector('#username') as HTMLSpanElement).innerHTML = data.username;
+
+// }
+// checkAuth()
+
+
+
+
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const cells = document.querySelectorAll('.cell');
+            const titleHeader = document.querySelector('#titleHeader');
+            const xPlayerDisplay = document.querySelector('#xPlayerDisplay');
+            const oPlayerDisplay = document.querySelector('#oPlayerDisplay');
+            const restartBtn = document.querySelector('#restartBtn') as HTMLElement;
+
+            let player = 'X';
+            let isPauseGame = false;
+            let isGameStart = false;
+            const inputCells = ['', '', '', '', '', '', '', '', ''];
+
+            const winConditions = [
+                [0, 1, 2], [3, 4, 5], [6, 7, 8],
+                [0, 3, 6], [1, 4, 7], [2, 5, 8],
+                [0, 4, 8], [2, 4, 6]
+            ];
+
+            cells.forEach((cell, index) => {
+                cell.addEventListener('click', () => tapCell(cell as HTMLElement, index));
+            });
+
+            function tapCell(cell: HTMLElement, index: number) {
+                if (cell.textContent == '' && !isPauseGame) {
+                    isGameStart = true;
+                    updateCell(cell, index);
+                    if (!checkWinner()) {
+                        changePlayer();
+                        randomPick();
+                    }
+                }
+            }
+
+            function updateCell(cell: HTMLElement, index: number) {
+                cell.textContent = player;
+                inputCells[index] = player;
+                cell.style.color = (player == 'X') ? '#1892EA' : '#A737FF';
+            }
+
+            function changePlayer() {
+                player = (player == 'X') ? 'O' : 'X';
+            }
+
+            function randomPick() {
+                isPauseGame = true;
+                setTimeout(() => {
+                    let randomIndex;
+                    do {
+                        randomIndex = Math.floor(Math.random() * inputCells.length);
+                    } while (inputCells[randomIndex] !== '');
+                    updateCell(cells[randomIndex] as HTMLElement, randomIndex);
+                    if (!checkWinner()) {
+                        changePlayer();
+                        isPauseGame = false;
+                    }
+                }, 1000);
+            }
+
+            function checkWinner() {
+                for (const [a, b, c] of winConditions) {
+                    if (inputCells[a] === player && inputCells[b] === player && inputCells[c] === player) {
+                        declareWinner([a, b, c]);
+                        return true;
+                    }
+                }
+                if (inputCells.every(cell => cell !== '')) {
+                    declareDraw();
+                    return true;
+                }
+            }
+
+            function declareWinner(winningIndices: number[]) {
+                if (titleHeader) {
+                    titleHeader.textContent = `${player} Wins!`;
+                }
+                isPauseGame = true;
+                winningIndices.forEach((index) =>
+                    (cells[index] as HTMLElement).style.background = '#2A2343'
+                );
+                if (restartBtn) {
+                    restartBtn.style.visibility = 'visible';
+                }
+            }
+
+            function declareDraw() {
+                if (titleHeader) {
+                    titleHeader.textContent = 'Draw!';
+                }
+                isPauseGame = true;
+                restartBtn.style.visibility = 'visible';
+            }
+
+            if (xPlayerDisplay) {
+                xPlayerDisplay.addEventListener('click', () => choosePlayer('X'));
+            }
+            if (oPlayerDisplay) {
+                oPlayerDisplay.addEventListener('click', () => choosePlayer('O'));
+            }
+            restartBtn.addEventListener('click', resetGame);
+
+            function choosePlayer(selectedPlayer: string) {
+                if (!isGameStart) {
+                    player = selectedPlayer;
+                    if (xPlayerDisplay) {
+                        xPlayerDisplay.classList.toggle('player-active', player === 'X');
+                    }
+                    if (oPlayerDisplay) {
+                        oPlayerDisplay.classList.toggle('player-active', player === 'O');
+                    }
+                }
+            }
+
+            
+
+            function resetGame() {
+                restartBtn.style.visibility = 'hidden';
+                inputCells.fill('');
+                cells.forEach(cell => {
+                    (cell as HTMLElement).textContent = '';
+                    (cell as HTMLElement).style.background = '';
+                });
+                isPauseGame = false;
+                isGameStart = false;
+                if (titleHeader) {
+                    titleHeader.textContent = 'Choose';
+                }
+            }
+        });
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&display=swap');
+
+        * {
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            user-select: none;
+            color: white;
+        }
+
+        main {
+            background-image: url('images/bg-pixels.png');
+           background-size: cover;
+           background-position-x: 75%;
+            height: 100%;
+            width:100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .tic-tac-toe-intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: #f4e9d6;
+    font-family: 'Press Start 2P', monospace;
+    gap: 1rem;
+   
+  }
+  
+  .title {
+    font-size: 4rem;
+    letter-spacing: 2px;
+    color: #4ceaff;
+    border-top: 4px solid red;
+    border-bottom: 4px solid red;
+    padding: 0.5rem 0;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+    line-height: 2rem;
+    color: #fff8dc;
+  }
+
+        #header {
+            display: flex;
+            flex-direction: column;
+            width: 235px;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        #titleHeader {
+            font-size: 2rem;
+            margin-bottom: 30px;
+        }
+
+        #Token {
+            display: flex;
+            gap: 5rem;
+        }
+
+        .player {
+            background: white;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 12px;
+            border: solid 4px #17122A;
+            opacity: 0.5;
+            transition: 0.3s;
+        }
+
+        .player:hover {
+            border: solid 4px #2A2343;
+        }
+
+        .player-active {
+            opacity: 1;
+            border: solid 4px #2A2343;
+        }
+
+        #xPlayerDisplay { color: #1892EA; }
+        #oPlayerDisplay { color: #A737FF; }
+
+        #board {
+  display: grid;
+  grid-template-columns: repeat(3, 90px);
+  gap: 0.5rem;
+  padding: 2rem;
+  border: 4.5px groove #4ceaff;
+  border-radius: 3%;
+  background-color: #0d1b2a;
+}
+
+        .cell{
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    background-color: #102030;
+    border: 2px solid #4ceaff;
+  }
+
+        .cell:hover {
+            background: #2A2343;
+        }
+
+        .player1 li{
+            margin-top: 30px;
+            font-size: 4rem;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        #restartBtn {
+            background-color: transparent;
+            margin-top: 30px;
+            width: 235px;
+            padding: 8px;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s background;
+            visibility: hidden;
+        }
+
+        #restartBtn:hover {
+        }
+
+        #logout{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+    border-radius: 8px;
+    background-color: rgb(255, 0, 0);
+    border-radius: 24px ;
+    width: 14rem;
+    height: 4rem ;
+    border: 0px;
+    color: black;
+        }
+
+        li{
+            list-style: none;
+        }
+        
+
+        @media (max-width: 480px) {
+
+            .player1 p{
+                font-size: 2rem;
+            }
+        }
+    </style>
+
+</body>
