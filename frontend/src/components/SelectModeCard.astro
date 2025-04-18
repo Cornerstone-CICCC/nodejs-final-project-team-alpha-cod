@@ -2,13 +2,48 @@
 ---
 
 <div class="container select-mode">
-    <div class="row row-mode">
-        <div class="col col-mode">
-
-        </div>
-
-        <div class="col col-mode">
-
+    <div class="card">
+        <h1>TIC PAC TOE</h1>
+        <div class="row card-row">
+            <!--Side navbar menu-->
+            <div class="col card-col-menu">
+                    <a href="#" id="singlePlayer">Single player</a>
+                    <a href="#" id="multiPlayer">Multiplayer</a>
+            </div>
+            
+            <div class="col card-col">
+                <img id="playerImage" src="" alt="Player Image" class="hidden">
+            </div>
         </div>
     </div>
 </div>
+
+<script>
+    const singlePlayer = document.getElementById("singlePlayer");
+    const multiPlayer = document.getElementById("multiPlayer");
+    const playerImage = document.getElementById("playerImage");
+
+    const singlePlayerImg = "/images/singlePlayer.png";
+    const multiPlayerImg = "/images/multiPlayer.png";
+
+    // Hover Effect
+    singlePlayer.addEventListener("mouseover", () => {
+        playerImage.src = singlePlayerImg;
+        playerImage.classList.remove("hidden");
+    });
+
+    multiPlayer.addEventListener("mouseover", () => {
+        playerImage.src = multiPlayerImg;
+        playerImage.classList.remove("hidden");
+    });
+
+    // Click Effect
+    singlePlayer.addEventListener("click", () => {
+        playerImage.src = singlePlayerImg;
+    });
+
+    multiPlayer.addEventListener("click", () => {
+        playerImage.src = multiPlayerImg;
+    });
+
+</script>

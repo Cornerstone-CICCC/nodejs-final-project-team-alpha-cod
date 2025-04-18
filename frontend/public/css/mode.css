@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik+Dirt&display=swap");
 @font-face {
   font-family: "BarcadeItalic-wzZz";
   src: url("/fonts/barcade-font/BarcadeItalic-wzZz.otf") format("truetype");
@@ -17,9 +18,76 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-image: url("/public/images/background.png");
+  width: 100vw;
+  min-height: 100vh;
+  background-image: url("/images/background.png");
   background-size: cover;
+}
+.select-mode .card {
+  display: flex;
+  flex-direction: column;
+  background-color: #d6dbe5;
+  padding: 20px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 50%;
+}
+.select-mode .card h1 {
+  margin: 2rem;
+  display: flex;
+  justify-content: center;
+  font-family: "BarcadeItalic-wzZz", sand-serif;
+  font-size: 5rem;
+  color: black;
+}
+.select-mode .card .card-row {
+  display: flex;
+  flex-direction: row;
+  padding: 30px;
+  gap: 40px;
+}
+.select-mode .card .card-row .card-col-menu {
+  display: flex;
+  flex-direction: column;
+  background-color: #00a696;
+  width: 150px;
+  padding: 5px;
+  gap: 20px;
+  transform: rotate(-40deg);
+}
+.select-mode .card .card-row .card-col-menu a {
+  display: block;
+  padding: 20px;
+  gap: 20px;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 300;
+  color: black;
+  font-family: "Kanit", sans-serif;
+  transform: rotate(40deg);
+}
+.select-mode .card .card-row .card-col-menu a:hover {
+  background-color: #fabe00;
+  font-family: "Rubik Dirt", system-ui;
+  color: black;
+  padding: 10px;
+}
+.select-mode .card .card-row .card-col {
+  display: flex;
+  flex-direction: column;
+  background-color: black;
+  color: white;
+  width: 100%;
+  max-width: 70%;
+}
+.select-mode .card .card-row .card-col #playerImage {
+  width: 150px;
+  height: auto;
+  display: block;
+  margin-top: 20px;
+}
+.select-mode .card .card-row .card-col #playerImage .hidden {
+  display: none;
 }
 
 /*# sourceMappingURL=mode.css.map */
