@@ -22,7 +22,7 @@ const signupUser = async (req: Request, res: Response) => {
       res.status(201).json({ message: "User registered successfully", user });
   } catch (err) {
       console.error("Signup error:", err);
-      res.status(500).json({ message: "Signup failed", error: err.message });
+      res.status(500).json({ message: "Signup failed", error: err });
   }
 };
 
