@@ -1,0 +1,134 @@
+---
+// Componente visual estático tipo retro estilo arcade
+---
+<div class="tic-tac-toe-intro">
+    <h1 class="title">TICTACTOE</h1>
+    <p class="subtitle">THE INFINITE TIC-TAC-TOE GAME,<br />UNTIL SOMEONE WINS!</p>
+    
+    <div class="board">
+        <div class="cell red">X</div>
+        <div class="cell red">X</div>
+        <div class="cell yellow">O</div>
+    
+        <div class="cell yellow">O</div>
+        <div class="cell red">X</div>
+        <div class="cell red">X</div>
+    
+        <div class="cell yellow">O</div>
+        <div class="cell red">X</div>
+        <div class="cell red">X</div>
+      </div>
+
+    <button class="start-btn">START</button>
+  </div>
+  
+  <style>
+  .tic-tac-toe-intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: #f4e9d6;
+    font-family: 'Press Start 2P', monospace;
+    gap: 1rem;
+   
+  }
+  
+  .title {
+    font-size: 4rem;
+    letter-spacing: 2px;
+    color: #4ceaff;
+    border-top: 4px solid red;
+    border-bottom: 4px solid red;
+    padding: 0.5rem 0;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+    line-height: 2rem;
+    color: #fff8dc;
+  }
+  
+  .board {
+  display: grid;
+  grid-template-columns: repeat(3, 90px);
+  gap: 0.5rem;
+  padding: 2rem;
+  border: 4.5px groove #4ceaff;
+  border-radius: 3%;
+  background-color: #0d1b2a;
+}
+
+  
+  .cell {
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    background-color: #102030;
+    border: 2px solid #4ceaff;
+  }
+  
+  .cell.red {
+    color: #ff004d;
+  }
+  
+  .cell.yellow {
+  color: #ffcc00;
+  text-shadow: 0 0 1px #000000; /* Opcional, le da más estilo retro */
+}
+  
+  
+  .start-btn {
+    margin-top: 1rem;
+    padding: 0.8rem 2rem;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.9rem;
+    border: 3px solid #4ceaff;
+    background-color: #0d1b2a;
+    color: #f4e9d6;
+    cursor: pointer;
+    box-shadow: inset 0 0 0 2px #00ffff;
+  }
+  
+  .start-btn:hover {
+    background-color: #d48600;
+    color: black;
+  }
+
+
+  @media (max-width: 480px) {
+  .board {
+    grid-template-columns: repeat(3, 60px);
+    padding: 1rem;
+  }
+
+  .cell {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+
+  .start-btn {
+    font-size: 0.7rem;
+    padding: 0.6rem 1.2rem;
+  }
+
+  .title {
+    font-size: 1.4rem;
+  }
+
+  .subtitle {
+    font-size: 0.5rem;
+  }
+
+  .tic-tac-toe-intro {
+ 
+}
+}
+
+
+  </style>
+  

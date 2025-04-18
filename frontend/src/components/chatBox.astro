@@ -67,14 +67,14 @@
 }
 
 .chat-box {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 2rem;
-    gap: 1rem;
-  }
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 2rem;
+  gap: 1rem;
+}
 
   .messages-area {
     width: 320px;
@@ -133,25 +133,38 @@
 
 
   @media (max-width: 480px) {
-  .chat-form {
+  .chat-box {
+    width: 100%;
+    display: flex;
     flex-direction: column;
-    align-items: stretch;
-    gap: 0.5rem;
+    align-items: center;
+    padding: 1rem;
   }
 
-  .send{
-  width: 5px;
-  margin-left: 0px;
-  
-}
+  .messages-area {
+    width: 90%;
+    max-height: 100px;
+  }
 
-input{
-    margin-left: -12px;
-}
+  .chat-form {
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    gap: 0.5rem;
+  }
 
   .chat-form input[type="text"],
   .chat-form button {
     width: 100%;
+    margin: 0;
+  }
+
+  .send {
+    width: 100%;
+  }
+
+  input {
+    margin: 0;
   }
 }
 </style>

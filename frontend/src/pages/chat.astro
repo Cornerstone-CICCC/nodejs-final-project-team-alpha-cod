@@ -1,8 +1,30 @@
 ---
 import ChatBox from '../components/chatBox.astro';
+import PlayDisplay from '../components/play-display.astro';
 import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
-  <ChatBox />
+  <div class="chat-page-wrapper">
+    <PlayDisplay />
+    <ChatBox />
+  </div>
 </Layout>
+
+<style>
+  .chat-page-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem 1rem;
+    min-height: 100vh;
+  }
+
+  @media (max-width: 480px) {
+    .chat-page-wrapper {
+      gap: 1rem;
+      padding: 1rem 0.5rem;
+    }
+  }
+</style>
