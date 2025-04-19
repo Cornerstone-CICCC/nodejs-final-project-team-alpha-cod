@@ -7,43 +7,52 @@
         <div class="row card-row">
             <!--Side navbar menu-->
             <div class="col card-col-menu">
-                    <a href="#" id="singlePlayer">Single player</a>
-                    <a href="#" id="multiPlayer">Multiplayer</a>
+                    <a href="/game" id="singlePlayer">Single Player Mode</a>
+                    <a href="/game" id="multiPlayer">Multiplayer Mode</a>
             </div>
             
             <div class="col card-col">
-                <img id="playerImage" src="" alt="Player Image" class="hidden">
+                <img id="playerImage" src="" alt="" class="hidden">
             </div>
         </div>
     </div>
 </div>
 
 <script>
-    const singlePlayer = document.getElementById("singlePlayer");
-    const multiPlayer = document.getElementById("multiPlayer");
-    const playerImage = document.getElementById("playerImage");
+    
+    //GSAP
 
-    const singlePlayerImg = "/images/singlePlayer.png";
-    const multiPlayerImg = "/images/multiPlayer.png";
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+    gsap.registerPlugin(ScrollTrigger);
 
-    // Hover Effect
-    singlePlayer.addEventListener("mouseover", () => {
-        playerImage.src = singlePlayerImg;
-        playerImage.classList.remove("hidden");
-    });
 
-    multiPlayer.addEventListener("mouseover", () => {
-        playerImage.src = multiPlayerImg;
-        playerImage.classList.remove("hidden");
-    });
+const singlePlayer = document.getElementById("singlePlayer");
+const multiPlayer = document.getElementById("multiPlayer");
+const playerImage = document.getElementById("playerImage");
 
-    // Click Effect
-    singlePlayer.addEventListener("click", () => {
-        playerImage.src = singlePlayerImg;
-    });
+const singlePlayerImg = "/images/singlePlayer.png";
+const multiPlayerImg = "/images/multiPlayer.png";
 
-    multiPlayer.addEventListener("click", () => {
-        playerImage.src = multiPlayerImg;
-    });
+// Hover Effect with GSAP Animation (Triggers Every Time)
+singlePlayer.addEventListener("mouseenter", () => {
+    playerImage.src = singlePlayerImg;
+    playerImage.classList.remove("hidden");
+
+    gsap.fromTo("#playerImage", 
+        { rotation: -30, scale: 0.8, opacity: 0 },
+        { rotation: 360, scale: 1.5, opacity: 1, ease: "back.inOut", duration: 1.5 }
+    );
+});
+
+multiPlayer.addEventListener("mouseenter", () => {
+    playerImage.src = multiPlayerImg;
+    playerImage.classList.remove("hidden");
+
+    gsap.fromTo("#playerImage", 
+        { rotation: 30, scale: 0.8, opacity: 0 },
+        { rotation: -360, scale: 1.2, opacity: 1, ease: "power2.inOut", duration: 1.5 }
+    );
+});
 
 </script>
