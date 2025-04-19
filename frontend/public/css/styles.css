@@ -313,16 +313,17 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: black;
+  background-color: transparent;
   color: white;
   width: 100%;
   max-width: 60%;
 }
 .select-mode .card .card-row .card-col #playerImage {
-  width: 150px;
+  width: 100%;
   height: auto;
   display: block;
   margin-top: 20px;
+  border-radius: 50%;
 }
 .select-mode .card .card-row .card-col #playerImage .hidden {
   display: none;
