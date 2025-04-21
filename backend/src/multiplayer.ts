@@ -1,82 +1,51 @@
-import express, { Request, Response } from "express";
-import { Server } from "socket.io";
-import { createServer } from "http";
-import mongoose from "mongoose";
+import express, { Request, Response } from 'express';
+import dotenv from 'dotenv';
+dotenv.config();
+import mongoose from 'mongoose';
+import userRouter from './routes/user.routes';
+import cors from 'cors';
+import { createServer } from 'http';
+import { Server } from 'socket.io';
+import { multiHandler } from './sockets/multiplayer.handler';
 
-const app = express()
-const ioServer = createServer(app)
-const io = new Server(ioServer, {
-    cors: {
-        origin: 'http://localhost:4321',
-        methods: ['GET', 'POST']
-    }
-})
+const app = express();
+const server = createServer(app);
+const io = new Server(server, {
+  cors: {
+    origin: 'http://localhost:4321', // Removed trailing slash
+    methods: ['GET', 'POST']
+  }
+});
 
-interface Player {
-    id: string
-    icon: 'X' | 'O'
-}
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-let players: Player[] = []
-let boardState = ['', '', '', '', '', '', '', '', '']
-let currPlayer = 'X' 
+// Frontend CORS
+app.use(cors({
+  origin: 'http://localhost:4321',
+  credentials: true
+}));
 
-const checkWinner = () => {
-    const winningCombinations = [
-        [0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6],
-        [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]
-    ]
-    const winnerCombo = winningCombinations.find(([a, b, c]) => {
-        return boardState[a] && boardState[a] === boardState[b] && boardState[a] === boardState[c]
-    })
-  
-    if (winnerCombo) {
-        return boardState[winnerCombo[0]]
-    } else {
-        return boardState.includes('') ? null : 'Draw'
-    }
-}
+// Initialize sockets
+multiHandler(io)
 
-io.on('connection', (socket) => {
-    console.log(`User ${socket.id} has connected`)
-    if (players.length < 2) {
-        players.push({ id: socket.id, icon: players.length === 0 ? 'X' : 'O' })
-        socket.emit('assignSymbol', players[players.length - 1].icon)
-    } else {
-        socket.emit('spectator')
-    }
+// User routes
+app.use('/user', userRouter);
 
-    io.emit('update players', players.map(player => player.icon))
-    socket.on('Play', (data: {
-        index: number
-        player: string
-    }) => {
-        if (socket.id === players.find(player => player.icon === currPlayer)?.id && boardState[data.index] === '') {
-            boardState[data.index] = data.player
-            io.emit('movement', data)
+// Root route
+app.get('/', (req: Request, res: Response) => {
+  res.status(200).send('Welcome to my server');
+});
 
-            const winner = checkWinner()
-            if (winner) {
-                io.emit('game over', {winner})
-                boardState = ['', '', '', '', '', '', '', '', '']
-                currPlayer = 'X'
-            } else {
-                currPlayer = currPlayer === 'X' ? 'O' : 'X'
-            }
-        }
-    })
-
-    socket.on('disconnect', () => {
-        console.log(`User ${socket.id} has disconnected`)
-        players = players.filter(player => player.id !== socket.id)
-        io.emit('update players', players.map(player => player.icon))
-    })
-})
+// Fallback route
+app.use((req: Request, res: Response) => {
+  res.status(404).send('Invalid route!');
+});
 
 const PORT = process.env.PORT || 3000;
 
 if (!process.env.DATABASE_URI) {
-  throw new Error('Missing connection string')
+  throw new Error('Missing connection string');
 }
 
 // Connect to MongoDB and start server
@@ -84,12 +53,12 @@ mongoose
   .connect(process.env.DATABASE_URI)
   .then(() => {
     if (process.env.NODE_ENV !== 'production') {
-      console.log('Connected to MongoDB: tictactoe')
+      console.log('Connected to MongoDB: tictactoe');
     }
-    ioServer.listen(PORT, () => {
-      console.log(`Server is running on http://localhost:${PORT}`)
+    server.listen(PORT, () => {
+      console.log(`Server is running on http://localhost:${PORT}`);
     });
   })
   .catch(err => {
-    console.error('MongoDB connection error:', err)
+    console.error('MongoDB connection error:', err);
   });
