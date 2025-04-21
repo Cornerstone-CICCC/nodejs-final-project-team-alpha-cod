@@ -12,6 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.loginUser = void 0;
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const user_model_1 = require("../models/user.model");
 //Signup User
@@ -33,24 +34,33 @@ const signupUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         res.status(500).json({ message: "Signup failed", error: err });
     }
 });
-//Login User
 const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { email, password } = req.body;
     try {
-        const { email, password } = req.body;
         const user = yield user_model_1.User.findOne({ email });
-        if (!user)
-            return res.status(400).json({ message: "User not found" });
-        const isMatch = yield bcrypt_1.default.compare(password, user.password);
-        if (!isMatch)
-            return res.status(400).json({ message: "Invalid password" });
-        res.status(200).json({ message: 'Login successful' });
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        const passwordMatch = yield bcrypt_1.default.compare(password, user.password);
+        if (!passwordMatch) {
+            return res.status(401).json({ message: 'Invalid email or password' });
+        }
+        return res.status(200).json({
+            message: 'Login successful',
+            user: {
+                name: user.firstname,
+                email: user.email,
+                // Don't send the hashed password back!
+            }
+        });
     }
-    catch (err) {
-        console.error(err);
-        res.status(500).json({ message: 'Login failed ' });
+    catch (error) {
+        console.error('Login error:', error);
+        return res.status(500).json({ message: 'Internal server error' });
     }
 });
+exports.loginUser = loginUser;
 exports.default = {
     signupUser,
-    loginUser
+    loginUser: exports.loginUser
 };

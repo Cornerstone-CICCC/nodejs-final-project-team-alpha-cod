@@ -12,7 +12,7 @@ const app = express();
 const ioServer = createServer(app);
 const io = new Server(ioServer, {
   cors: {
-    origin: 'http://localhost:4321', // Removed trailing slash
+    origin: 'http://localhost:4322', // Removed trailing slash
     methods: ['GET', 'POST']
   }
 });
@@ -22,7 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Frontend CORS
 app.use(cors({
-  origin: 'http://localhost:4321',
+  origin: 'http://localhost:4322',
   credentials: true
 }));
 
@@ -53,7 +53,7 @@ mongoose
   .connect(process.env.DATABASE_URI)
   .then(() => {
     if (process.env.NODE_ENV !== 'production') {
-      console.log('Connected to MongoDB: tictactoe');
+      console.log('Connected to MongoDB: Tictactoe');
     }
     ioServer.listen(PORT, () => {
       console.log(`Server is running on http://localhost:${PORT}`);

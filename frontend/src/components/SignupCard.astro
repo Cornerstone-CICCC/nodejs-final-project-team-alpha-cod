@@ -60,3 +60,28 @@
           </form>
     </div>
 </div>
+
+
+<script>
+    const form = document.querySelector('#signup-form') as HTMLFormElement
+  
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault()
+      
+      const formData = new FormData(e.target as HTMLFormElement)
+      const formObj = Object.fromEntries(formData.entries()) // Converts form data to JS object
+      const res = await fetch(`http://localhost:3600/user/signup`, {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formObj)
+      })
+      if (!res.ok) {
+        console.error("Something went wrong")
+        return
+      }
+      window.location.href = "/login"
+    })
+  </script>
