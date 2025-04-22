@@ -29,7 +29,7 @@
         </div>
         <form class="join-game">
             <button class="game-code">JOIN A GAME</button>
-            <input type="text" class="game-code-input" placeholder="invitation code">
+            <input type="text" class="game-code-input" placeholder="friend's code">
         </form>  
     </div>
     <div class="notification">
@@ -64,6 +64,7 @@
     let symbol = ''
     let myTurn = false
     let room = ''
+    let gameOver = false
     const board = ['', '', '', '', '', '', '', '', '']
     const winConditions = [
         [0, 1, 2], [3, 4, 5], [6, 7, 8],
@@ -108,12 +109,12 @@
         myTurn = symbol === 'X'
         room = receivedRoom
         notification.classList.add('active')
-        notifText.innerHTML = `You are ${
-        yourSymbol === 'X' ? `<span style="color: red;">"${yourSymbol}"</span>` :
+        notifText.innerHTML = `You are ${yourSymbol === 'X' 
+        ? `<span style="color: red;">"${yourSymbol}"</span>` :
         `<span style="color: #ffcc00;">"${yourSymbol}"</span>`
         }`
-        mySymbol.innerHTML = `You are ${
-        yourSymbol === 'X' ? `<span style="color: red;">${yourSymbol}</span>` :
+        mySymbol.innerHTML = `You are ${yourSymbol === 'X' 
+        ? `<span style="color: red;">${yourSymbol}</span>` :
         `<span style="color: #ffcc00;">${yourSymbol}</span>`
         }`
     })
@@ -174,7 +175,8 @@
     })
 
     function makeMove(index) {
-        if (!myTurn || board[index] !== '') return
+        if (gameOver || !myTurn || board[index] !== '') return
+
         board[index] = symbol
         updateCell(index, symbol)
         myTurn = false
