@@ -45,6 +45,10 @@ export const handleMultiEvents = (
         }
     })
 
+    socket.on('make move', ({ index, symbol, room }) => {
+        io.to(room).emit('move made', { index, symbol })
+    })
+
     socket.on('tap cell', ({ index, symbol, room }) => {
         io.to(room).emit('update cell', { index, symbol });
     })

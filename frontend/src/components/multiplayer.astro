@@ -61,13 +61,14 @@
     const cells = document.querySelectorAll('.cell')
     const restartBtn = document.querySelector('#restartBtn');
 
-    let symbol = '';
-    let myTurn = symbol === 'X'
-    let room = null
-    const inputCells = ['', '', '', '', '', '', '', '', ''];
+    let symbol = ''
+    let myTurn = false
+    let room = ''
+    const board = ['', '', '', '', '', '', '', '', '']
     const winConditions = [
-        [0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6],
-        [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6],
+        [0, 1, 2], [3, 4, 5], [6, 7, 8],
+        [0, 3, 6], [1, 4, 7], [2, 5, 8],
+        [0, 4, 8], [2, 4, 6]
     ]
     
     invite.addEventListener('click', (e) => {
@@ -117,58 +118,42 @@
         }`
     })
 
-    const playCell = (index, symbol) => {
-    const cell = cells[index]
-    if (cell.textContent === '') {
+    function updateCell(index, symbol) {
+        const cell = cells[index]
         cell.innerHTML = symbol === 'X'
             ? `<span style="color: red;">${symbol}</span>`
-            : `<span style="color: #ffcc00;">${symbol}</span>`;
-        inputCells[index] = symbol;
+            : `<span style="color: #ffcc00;">${symbol}</span>`
     }
-}
 
     function checkWinner() {
         for (const [a, b, c] of winConditions) {
             if (
-                inputCells[a] &&
-                inputCells[a] === inputCells[b] &&
-                inputCells[a] === inputCells[c]
+                board[a] &&
+                board[a] === board[b] &&
+                board[a] === board[c]
             ) {
-                mySymbol.textContent = `${inputCells[a]} Wins!`
-                [a, b, c].forEach(i => {
-                    cells[i].style.background = '#2A2343'
-                });
+                mySymbol.innerHTML = `<span style="color: green;">${board[a]} wins!</span>`
+                [a, b, c].forEach(i => cells[i].style.background = '#2A2343')
                 myTurn = false
                 restartBtn.style.visibility = 'visible'
                 return true
             }
         }
-        if (inputCells.every(cell => cell !== '')) {
+        if (board.every(cell => cell !== '')) {
             mySymbol.textContent = 'Draw!'
-            myTurn = false
             restartBtn.style.visibility = 'visible'
             return true
         }
         return false
     }
 
-    function handleClick(index) {
-        if (myTurn && inputCells[index] === '') {
-            playCell(index, symbol)
-            socket.emit('tap cell', { index, symbol, room })
-            if (!checkWinner()) {
-                myTurn = false
-                mySymbol.textContent = `Waiting for opponent...`
-            }
-        }
-    }
-
     cells.forEach((cell, index) => {
-        cell.addEventListener('click', () => handleClick(index))
+        cell.addEventListener('click', () => {makeMove(index)})
     })
 
-    socket.on('update cell', ({ index, symbol: playedSymbol }) => {
-        playCell(index, playedSymbol)
+    socket.on('move made', ({ index, symbol: playedSymbol }) => {
+        board[index] = playedSymbol
+        updateCell(index, playedSymbol)
         if (!checkWinner()) {
             myTurn = true
             mySymbol.textContent = `Your turn`
@@ -176,15 +161,26 @@
     })
 
     restartBtn.addEventListener('click', () => {
-        inputCells.fill('')
+        board.fill('')
         cells.forEach(cell => {
             cell.textContent = ''
             cell.style.background = ''
         })
-        mySymbol.textContent = `You are ${symbol}${symbol === 'X' ? ' (Your turn)' : ''}`
+        mySymbol.innerHTML = `You are ${symbol === 'X'
+            ? `<span style="color: red;">${symbol}</span>`
+            : `<span style="color: #ffcc00;">${symbol}</span>`}`
         myTurn = symbol === 'X'
         restartBtn.style.visibility = 'hidden'
-    });
+    })
+
+    function makeMove(index) {
+        if (!myTurn || board[index] !== '') return
+        board[index] = symbol
+        updateCell(index, symbol)
+        myTurn = false
+        socket.emit('make move', { index, symbol, room })
+        checkWinner()
+    }
 
 </script>
 

@@ -38,6 +38,9 @@ const handleMultiEvents = (io, socket, players) => {
             socket.emit('room full', 'Room is full');
         }
     });
+    socket.on('make move', ({ index, symbol, room }) => {
+        io.to(room).emit('move made', { index, symbol });
+    });
     socket.on('tap cell', ({ index, symbol, room }) => {
         io.to(room).emit('update cell', { index, symbol });
     });
