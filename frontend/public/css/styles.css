@@ -750,10 +750,9 @@
   display: flex;
   flex-direction: center;
   justify-content: center;
-  width: 60%;
+  width: 55%;
   font-size: 1.1rem;
   background-color: transparent;
-  font-size: 1.5rem;
   font-family: "BarcadeNoBar-mzD9", sand-serif;
 }
 .login .form form .btnAccess a {
@@ -761,7 +760,7 @@
   text-decoration: none;
 }
 .login .form form .btnAccess:hover {
-  transform: scale(1.5);
+  transform: scale(1);
 }
 
 /* Extra small devices*/
@@ -881,6 +880,121 @@
   }
 }
 /* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-image: url("/images/background.png");
+    background-size: cover;
+    padding: 20px;
+    height: 100%;
+  }
+  .login .title {
+    margin: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .login .title h1 {
+    font-family: "BarcadeItalic-wzZz", sand-serif;
+    font-size: 2.5rem;
+    color: #e9cea3;
+  }
+  .login .title #main-p {
+    font-family: "Kanit", sans-serif;
+    font-size: 1.3rem;
+    color: #e9cea3;
+  }
+  .login .title p {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Kanit", sans-serif;
+    font-size: 1rem;
+    color: #e9cea3;
+  }
+  .login .title p .btnAccess {
+    display: flex;
+    background-color: black;
+    width: 100%;
+    max-width: 25%;
+  }
+  .login .title p .btnAccess a {
+    background-color: transparent;
+    transition: border-width 0.6s linear;
+    font-size: 1rem;
+    font-family: "BarcadeNoBar-mzD9", sand-serif;
+    text-decoration: none;
+    color: #e9cea3;
+  }
+  .login .title p .btnAccess:hover {
+    transform: scale(1);
+  }
+  .login .form {
+    background-color: #0e333c;
+    border: solid 5px white;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 60%;
+    padding: 15px;
+  }
+  .login .form form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    max-width: 40%;
+    padding: 1em;
+  }
+  .login .form form fieldset {
+    border: none;
+    padding: 2rem 0;
+  }
+  .login .form form fieldset label {
+    display: block;
+    font-family: "Kanit", sans-serif;
+    font-size: 1rem;
+    color: #e9cea3;
+    margin: 0.5rem 0;
+  }
+  .login .form form fieldset label input {
+    display: block;
+    width: 100%;
+    max-width: 90%;
+    margin: 10px 0 0 0;
+    min-height: 2em;
+  }
+  .login .form form label[for=terms-and-conditions] {
+    color: #e9cea3;
+  }
+  .login .form form label[for=terms-and-conditions] a {
+    color: #e9cea3;
+    font-weight: bold;
+  }
+  .login .form form .btnAccess {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    max-width: 40%;
+    background-color: transparent;
+    font-size: 1rem;
+    font-family: "BarcadeNoBar-mzD9", sand-serif;
+  }
+  .login .form form .btnAccess a {
+    color: #e9cea3;
+    text-decoration: none;
+  }
+  .login .form form .btnAccess:hover {
+    transform: scale(1);
+  }
+}
 @font-face {
   font-family: "BarcadeItalic-wzZz";
   src: url("/fonts/barcade-font/BarcadeItalic-wzZz.otf") format("truetype");
@@ -1250,7 +1364,7 @@
   }
   .access-card .card .card-body .marker {
     height: 10px;
-    width: 700px;
+    width: 770px;
     margin: 10px auto;
   }
   .access-card .card .card-body .row-emojis .col-emoji {
@@ -1276,7 +1390,7 @@
     color: white;
   }
   .access-card .card .container.buttons .btnAccess:hover {
-    transform: scale(1.5);
+    transform: scale(1.3);
   }
 }
 
