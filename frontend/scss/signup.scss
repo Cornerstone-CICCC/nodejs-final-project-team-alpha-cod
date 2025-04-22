@@ -235,117 +235,6 @@
     
 }
 
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
-    .signup{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        background-image: url('/images/background.png');
-        background-size: cover;
-        padding: 20px;
-        .title {
-            margin: 2rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            h1 {
-                font-family: 'BarcadeItalic-wzZz', sand-serif;
-                font-size: 3rem;
-                color: #e9cea3;
-            }
-            #main-p {
-                font-family: "Kanit", sans-serif;
-                font-size: 1rem;
-                color: #e9cea3;
-            }
-            p{
-                display: flex;
-                flex-direction: column;
-                font-family: "Kanit", sans-serif;
-                font-size: 1rem;
-                color: #e9cea3;
-                button{
-                    background-color: black;
-                    a{
-                        background-color: transparent;
-                        transition: border-width 0.6s linear;
-                        font-size: 1.5rem;
-                        font-family: 'BarcadeNoBar-mzD9', sand-serif;
-                        text-decoration: none;
-                        color:#e9cea3;
-                    }
-                    &:hover{
-                        transform: scale(1.5);
-                    }
-                }
-            }
-        }
-        .form {
-            background-color: #0e333c;
-            border: solid 5px white;
-            border-radius: 15px;
-            width: 100%;
-            max-width: 70%;
-            padding: 15px;
-            form {
-                margin: 0 auto;
-                max-width: 500px;
-                min-width: 300px;
-                width: 60vw;
-                padding: 2em;
-                fieldset {
-                    border: none;
-                    padding: 2rem 0;
-                    label {
-                        display: block;
-                        font-family: "Kanit", sans-serif;
-                        font-size: 1rem;
-                        color: #e9cea3;
-                        margin: 0.5rem 0;
-                        input {
-                            width: 100%;
-                            margin: 10px 0 0 0;
-                            min-height: 2em;
-                        }
-                    }
-                }
-                label[for="terms-and-conditions"]{
-                    font-family: "Kanit", sans-serif;
-                    color:#e9cea3;
-                }
-                label[for="terms-and-conditions"] a {
-                    font-family: "Kanit", sans-serif;
-                    color:#e9cea3;
-                    font-weight: bold;
-                }
-    
-                //submit button
-                .btnAccess {
-                    display: block;
-                    margin: 1em auto;
-                    min-width: 300px;
-                    width: 60%;
-                    font-size: 1.1rem;
-                    background-color: transparent;
-                    font-size: 1.5rem;
-                    font-family: 'BarcadeNoBar-mzD9', sand-serif;
-                    a{
-                        color: #e9cea3;
-                        text-decoration: none;
-                    }
-                    &:hover{
-                         transform: scale(1.5);
-                     }
-                }
-            }
-        }
-    }
-    
-}
-
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
     .signup{
@@ -397,7 +286,7 @@
             border: solid 5px white;
             border-radius: 15px;
             width: 100%;
-            max-width: 50%;
+            max-width: 60%;
             padding: 15px;
             form {
                 margin: 0 auto;
@@ -416,6 +305,7 @@
                         margin: 0.5rem 0;
                         input {
                             width: 100%;
+                            max-width: 80%;
                             margin: 10px 0 0 0;
                             min-height: 2em;
                         }
@@ -525,6 +415,7 @@
                         margin: 0.5rem 0;
                         input {
                             width: 100%;
+                            max-width: 50%;
                             margin: 10px 0 0 0;
                             min-height: 2em;
                         }
