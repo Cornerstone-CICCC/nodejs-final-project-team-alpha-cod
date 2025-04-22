@@ -101,6 +101,167 @@
                    /*  font-size: 3rem; */
                     transform: scale(1.5);
                 }
+                }
+            }
+        }
+    }
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .access-card{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-image: url('/images/background.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        .card{
+            width: 100%;
+            max-width: 60%;
+            .card-body{
+                .marker{
+                    height: 10px;
+                    width: 420px;
+                    margin: 10px auto
+                }
+                .row-emojis{
+                    .col-emoji{
+                        font-size: 3.2rem;
+                    }
+                }
+                .card-title{
+                    font-size: 4rem;
+                }
+            }
+            
+            .container.buttons{
+                display: flex;
+                justify-content: center;
+                flex-direction: row;
+                align-items: center;
+                gap: 20px;
+                .btnAccess {
+                    width: 100%;
+                    max-width: 30%;
+                    font-size: 1.7rem;
+                    a {
+                        text-decoration: none;
+                        color: white;
+                    }
+    
+                    &:hover{
+                       /*  font-size: 3rem; */
+                        transform: scale(1.5);
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .access-card{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-image: url('/images/background.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        .card{
+            width: 100%;
+            max-width: 60%;
+            .card-body{
+                .marker{
+                    height: 10px;
+                    width: 550px;
+                    margin: 10px auto
+                }
+                .row-emojis{
+                    .col-emoji{
+                        font-size: 3.5rem;
+                    }
+                }
+                .card-title{
+                    font-size: 4rem;
+                }
+            }
+            
+            .container.buttons{
+                display: flex;
+                justify-content: center;
+                flex-direction: row;
+                align-items: center;
+                gap: 20px;
+                .btnAccess {
+                    width: 100%;
+                    max-width: 25%;
+                    font-size: 1.7rem;
+                    a {
+                        text-decoration: none;
+                        color: white;
+                    }
+    
+                    &:hover{
+                       /*  font-size: 3rem; */
+                        transform: scale(1.5);
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .access-card{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-image: url('/images/background.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        .card{
+            width: 100%;
+            max-width: 60%;
+            .card-body{
+                .marker{
+                    height: 10px;
+                    width: 770px;
+                    margin: 10px auto
+                }
+                .row-emojis{
+                    .col-emoji{
+                        font-size: 4.5rem;
+                    }
+                }
+                .card-title{
+                    font-size: 5rem;
+                }
+            }
+            
+            .container.buttons{
+                display: flex;
+                justify-content: center;
+                flex-direction: row;
+                align-items: center;
+                gap: 50px;
+                .btnAccess {
+                    width: 100%;
+                    max-width: 25%;
+                    font-size: 1.9rem;
+                    a {
+                        text-decoration: none;
+                        color: white;
+                    }
+    
+                    &:hover{
+                        transform: scale(1.3);
+                    }
+                }
             }
         }
     }
