@@ -7,6 +7,7 @@ import cors from 'cors';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 import { socketHandler } from './sockets/socket.handler';
+import { multiHandler } from './sockets/multiplayer.handler';
 
 const app = express();
 const ioServer = createServer(app);
@@ -28,6 +29,7 @@ app.use(cors({
 
 // Initialize sockets
 socketHandler(io);
+multiHandler(io)
 
 // User routes
 app.use('/user', userRouter);

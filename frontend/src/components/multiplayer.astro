@@ -48,6 +48,8 @@
 
     const invite = document.querySelector('.invite')
     const invCode = document.querySelector('.invite-code')
+    const joinGame = document.querySelector('.join-game')
+
     invite.addEventListener('click', (e) => {
         // e.preventDefault()
         socket.emit('invite')

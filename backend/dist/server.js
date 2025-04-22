@@ -12,6 +12,7 @@ const cors_1 = __importDefault(require("cors"));
 const http_1 = require("http");
 const socket_io_1 = require("socket.io");
 const socket_handler_1 = require("./sockets/socket.handler");
+const multiplayer_handler_1 = require("./sockets/multiplayer.handler");
 const app = (0, express_1.default)();
 const ioServer = (0, http_1.createServer)(app);
 const io = new socket_io_1.Server(ioServer, {
@@ -29,6 +30,7 @@ app.use((0, cors_1.default)({
 }));
 // Initialize sockets
 (0, socket_handler_1.socketHandler)(io);
+(0, multiplayer_handler_1.multiHandler)(io);
 // User routes
 app.use('/user', user_routes_1.default);
 // Root route
