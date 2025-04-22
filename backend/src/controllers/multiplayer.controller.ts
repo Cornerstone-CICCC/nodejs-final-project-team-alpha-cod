@@ -13,14 +13,35 @@ export const handleMultiEvents = (
     })
 
     socket.on('join room', (room) => {
-        const rooms = io.sockets.adapter.rooms
-        if (rooms.has(room)) {
+    const rooms = io.sockets.adapter.rooms
+    const roomData = rooms.get(room)
+
+        if (roomData && roomData.size < 2) {
             socket.join(room)
             socket.emit('joined', room)
             io.to(room).emit('player joined', socket.id)
-            console.log(`User ${socket.id} joined room`)
+            console.log(`User ${socket.id} joined room ${room}`)
+            if (roomData.size === 2) {
+                const players = Array.from(roomData)
+                const assignments = {
+                    [players[0]]: 'X',
+                    [players[1]]: 'O'
+                }
+    
+                players.forEach((id) => {
+                    io.to(id).emit('start game', {
+                        yourSymbol: assignments[id],
+                        opponentSymbol: assignments[id] === 'X' ? 'O' : 'X',
+                    })
+                })
+    
+                console.log(`Game started in room ${room}`)
+            }
+        } else if (!roomData) {
+            socket.emit('no room', 'Room does not exist')
+        } else {
+            socket.emit('room full', 'Room is full')
         }
-        socket.emit('no room', 'Room does not exist')
     })
 
     socket.on('disconnect', () => {
