@@ -12,7 +12,7 @@ const app = express();
 const ioServer = createServer(app);
 const io = new Server(ioServer, {
   cors: {
-    origin: 'http://localhost:4322', // Removed trailing slash
+    origin: 'http://localhost:4321', // Removed trailing slash
     methods: ['GET', 'POST']
   }
 });
@@ -22,7 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Frontend CORS
 app.use(cors({
-  origin: 'http://localhost:4322',
+  origin: 'http://localhost:4321',
   credentials: true
 }));
 
