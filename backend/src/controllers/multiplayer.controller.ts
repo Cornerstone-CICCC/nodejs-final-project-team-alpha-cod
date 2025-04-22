@@ -22,19 +22,20 @@ export const handleMultiEvents = (
             io.to(room).emit('player joined', socket.id)
             console.log(`User ${socket.id} joined room ${room}`)
             if (roomData.size === 2) {
-                const players = Array.from(roomData)
+                const playerIds = Array.from(roomData)
                 const assignments = {
-                    [players[0]]: 'X',
-                    [players[1]]: 'O'
+                    [playerIds[0]]: 'X',
+                    [playerIds[1]]: 'O'
                 }
-    
-                players.forEach((id) => {
+            
+                playerIds.forEach((id) => {
                     io.to(id).emit('start game', {
                         yourSymbol: assignments[id],
                         opponentSymbol: assignments[id] === 'X' ? 'O' : 'X',
+                        room, 
                     })
                 })
-    
+            
                 console.log(`Game started in room ${room}`)
             }
         } else if (!roomData) {
@@ -42,6 +43,10 @@ export const handleMultiEvents = (
         } else {
             socket.emit('room full', 'Room is full')
         }
+    })
+
+    socket.on('tap cell', ({ index, symbol, room }) => {
+        io.to(room).emit('update cell', { index, symbol });
     })
 
     socket.on('disconnect', () => {

@@ -57,7 +57,19 @@
     const notification = document.querySelector('.notification')
     const confirm = document.querySelector('.confirm')
     const notifText = document.querySelector('.notif-text')
+    const mySymbol = document.getElementById('titleHeader')
+    const cells = document.querySelectorAll('.cell')
+    const restartBtn = document.querySelector('#restartBtn');
 
+    let symbol = '';
+    let myTurn = symbol === 'X'
+    let room = null
+    const inputCells = ['', '', '', '', '', '', '', '', ''];
+    const winConditions = [
+        [0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6],
+        [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6],
+    ]
+    
     invite.addEventListener('click', (e) => {
         e.preventDefault()
         socket.emit('invite')
@@ -90,15 +102,89 @@
         notification.classList.remove('active')
     })
 
-    socket.on('start game', ({ yourSymbol, opponentSymbol }) => {
+    socket.on('start game', ({ yourSymbol, room: receivedRoom }) => {
+        symbol = yourSymbol
+        myTurn = symbol === 'X'
+        room = receivedRoom
         notification.classList.add('active')
         notifText.innerHTML = `You are ${
         yourSymbol === 'X' ? `<span style="color: red;">"${yourSymbol}"</span>` :
         `<span style="color: #ffcc00;">"${yourSymbol}"</span>`
         }`
-        
-        document.getElementById('titleHeader').textContent = `You are ${yourSymbol}`
+        mySymbol.innerHTML = `You are ${
+        yourSymbol === 'X' ? `<span style="color: red;">${yourSymbol}</span>` :
+        `<span style="color: #ffcc00;">${yourSymbol}</span>`
+        }`
     })
+
+    const playCell = (index, symbol) => {
+    const cell = cells[index]
+    if (cell.textContent === '') {
+        cell.innerHTML = symbol === 'X'
+            ? `<span style="color: red;">${symbol}</span>`
+            : `<span style="color: #ffcc00;">${symbol}</span>`;
+        inputCells[index] = symbol;
+    }
+}
+
+    function checkWinner() {
+        for (const [a, b, c] of winConditions) {
+            if (
+                inputCells[a] &&
+                inputCells[a] === inputCells[b] &&
+                inputCells[a] === inputCells[c]
+            ) {
+                mySymbol.textContent = `${inputCells[a]} Wins!`
+                [a, b, c].forEach(i => {
+                    cells[i].style.background = '#2A2343'
+                });
+                myTurn = false
+                restartBtn.style.visibility = 'visible'
+                return true
+            }
+        }
+        if (inputCells.every(cell => cell !== '')) {
+            mySymbol.textContent = 'Draw!'
+            myTurn = false
+            restartBtn.style.visibility = 'visible'
+            return true
+        }
+        return false
+    }
+
+    function handleClick(index) {
+        if (myTurn && inputCells[index] === '') {
+            playCell(index, symbol)
+            socket.emit('tap cell', { index, symbol, room })
+            if (!checkWinner()) {
+                myTurn = false
+                mySymbol.textContent = `Waiting for opponent...`
+            }
+        }
+    }
+
+    cells.forEach((cell, index) => {
+        cell.addEventListener('click', () => handleClick(index))
+    })
+
+    socket.on('update cell', ({ index, symbol: playedSymbol }) => {
+        playCell(index, playedSymbol)
+        if (!checkWinner()) {
+            myTurn = true
+            mySymbol.textContent = `Your turn`
+        }
+    })
+
+    restartBtn.addEventListener('click', () => {
+        inputCells.fill('')
+        cells.forEach(cell => {
+            cell.textContent = ''
+            cell.style.background = ''
+        })
+        mySymbol.textContent = `You are ${symbol}${symbol === 'X' ? ' (Your turn)' : ''}`
+        myTurn = symbol === 'X'
+        restartBtn.style.visibility = 'hidden'
+    });
 
 </script>
 
