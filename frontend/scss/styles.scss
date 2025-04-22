@@ -92,16 +92,6 @@
                 transition: border-width 0.6s linear;
                 font-size: 1.5rem;
                 font-family: 'BarcadeNoBar-mzD9', sand-serif;
-
-                a {
-                    text-decoration: none;
-                    color: white;
-                }
-
-                &:hover{
-                   /*  font-size: 3rem; */
-                    transform: scale(1.5);
-                }
             }
         }
     }
@@ -145,8 +135,18 @@
                 gap: 20px;
                 .btnAccess {
                     width: 100%;
-                    max-width: 25%;
+                    max-width: 30%;
                     font-size: 1.5rem;
+                    
+                a {
+                    text-decoration: none;
+                    color: white;
+                }
+
+                &:hover{
+                   /*  font-size: 3rem; */
+                    transform: scale(1.5);
+                }
                 }
             }
         }
@@ -190,8 +190,18 @@
                 gap: 20px;
                 .btnAccess {
                     width: 100%;
-                    max-width: 25%;
-                    font-size: 1.7rem;
+                    max-width: 30%;                   
+                     font-size: 1.7rem;
+                    
+                a {
+                    text-decoration: none;
+                    color: white;
+                }
+
+                &:hover{
+                   /*  font-size: 3rem; */
+                    transform: scale(1.5);
+                }
                 }
             }
         }
@@ -235,8 +245,17 @@
                 gap: 20px;
                 .btnAccess {
                     width: 100%;
-                    max-width: 25%;
+                    max-width: 30%;
                     font-size: 1.7rem;
+                    a {
+                        text-decoration: none;
+                        color: white;
+                    }
+    
+                    &:hover{
+                       /*  font-size: 3rem; */
+                        transform: scale(1.5);
+                    }
                 }
             }
         }
@@ -282,6 +301,15 @@
                     width: 100%;
                     max-width: 25%;
                     font-size: 1.7rem;
+                    a {
+                        text-decoration: none;
+                        color: white;
+                    }
+    
+                    &:hover{
+                       /*  font-size: 3rem; */
+                        transform: scale(1.5);
+                    }
                 }
             }
         }
@@ -304,7 +332,7 @@
             .card-body{
                 .marker{
                     height: 10px;
-                    width: 670px;
+                    width: 700px;
                     margin: 10px auto
                 }
                 .row-emojis{
@@ -322,11 +350,19 @@
                 justify-content: center;
                 flex-direction: row;
                 align-items: center;
-                gap: 20px;
+                gap: 50px;
                 .btnAccess {
                     width: 100%;
                     max-width: 25%;
                     font-size: 1.9rem;
+                    a {
+                        text-decoration: none;
+                        color: white;
+                    }
+    
+                    &:hover{
+                        transform: scale(1.5);
+                    }
                 }
             }
         }
