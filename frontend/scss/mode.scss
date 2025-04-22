@@ -41,7 +41,6 @@
             display: flex;
             justify-content: center;
             font-family: 'BarcadeItalic-wzZz', sand-serif;
-            font-size: 5rem;
             color: black;
         }
         .card-row {
@@ -55,7 +54,6 @@
                 justify-content: center;
                 align-items: center;
                 width: 100%;
-                max-width: 40%;
                 padding: 5px;
                 gap: 20px;
                 a {
@@ -92,6 +90,339 @@
                     border-radius: 50%;
                     .hidden {
                         display: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .select-mode {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        min-height: 100vh;
+        background-image: url('/images/background.png');
+        background-size: cover;
+        .card {
+            display: flex;
+            flex-direction: column;
+            background-color: #d6dbe5;
+            padding: 20px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 50%;
+            h1 {
+                margin: 2rem;
+                display: flex;
+                justify-content: center;
+                font-family: 'BarcadeItalic-wzZz', sand-serif;
+                font-size: 2rem;
+                color: black;
+            }
+            .card-row {
+                display: flex;
+                flex-direction: row;
+                padding: 30px;
+                gap: 40px;
+                .card-col-menu{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                    max-width: 50%;
+                    padding: 5px;
+                    gap: 20px;
+                    a {
+                        display: block;
+                        font-size: 1rem;
+                        padding: 20px;
+                        gap: 20px;
+                        text-align: center;
+                        text-decoration: none;
+                        font-weight: 300;
+                        color: black;
+                        font-family: "Press Start 2P", system-ui;
+                        &:hover {
+                            background-color: black;
+                            font-family: "Press Start 2P", system-ui;
+                            color:#ff0077;
+                            padding: 10px;
+                        }
+                    }
+                }
+                .card-col {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    background-color:transparent;
+                    color: white;
+                    width: 100%;
+                    max-width: 60%;
+                    #playerImage {
+                        width: 100%;
+                        height: auto;
+                        display: block;
+                        margin-top: 20px;
+                        border-radius: 50%;
+                        .hidden {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+    .select-mode {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        min-height: 100vh;
+        background-image: url('/images/background.png');
+        background-size: cover;
+        .card {
+            display: flex;
+            flex-direction: column;
+            background-color: #d6dbe5;
+            padding: 20px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 50%;
+            h1 {
+                margin: 2rem;
+                display: flex;
+                justify-content: center;
+                font-family: 'BarcadeItalic-wzZz', sand-serif;
+                font-size: 2.5rem;
+                color: black;
+            }
+            .card-row {
+                display: flex;
+                flex-direction: row;
+                padding: 30px;
+                gap: 40px;
+                .card-col-menu{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                    max-width: 50%;
+                    padding: 5px;
+                    gap: 20px;
+                    a {
+                        display: block;
+                        font-size: 1rem;
+                        padding: 20px;
+                        gap: 20px;
+                        text-align: center;
+                        text-decoration: none;
+                        font-weight: 300;
+                        color: black;
+                        font-family: "Press Start 2P", system-ui;
+                        &:hover {
+                            background-color: black;
+                            font-family: "Press Start 2P", system-ui;
+                            color:#ff0077;
+                            padding: 10px;
+                        }
+                    }
+                }
+                .card-col {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    background-color:transparent;
+                    color: white;
+                    width: 100%;
+                    max-width: 60%;
+                    #playerImage {
+                        width: 100%;
+                        height: auto;
+                        display: block;
+                        margin-top: 20px;
+                        border-radius: 50%;
+                        .hidden {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .select-mode {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        min-height: 100vh;
+        background-image: url('/images/background.png');
+        background-size: cover;
+        .card {
+            display: flex;
+            flex-direction: column;
+            background-color: #d6dbe5;
+            padding: 20px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 50%;
+            h1 {
+                margin: 2rem;
+                display: flex;
+                justify-content: center;
+                font-family: 'BarcadeItalic-wzZz', sand-serif;
+                font-size: 3.5rem;
+                color: black;
+            }
+            .card-row {
+                display: flex;
+                flex-direction: row;
+                padding: 30px;
+                gap: 40px;
+                .card-col-menu{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                    max-width: 50%;
+                    padding: 5px;
+                    gap: 20px;
+                    a {
+                        display: block;
+                        font-size: 1.5rem;
+                        padding: 20px;
+                        gap: 20px;
+                        text-align: center;
+                        text-decoration: none;
+                        font-weight: 300;
+                        color: black;
+                        font-family: "Press Start 2P", system-ui;
+                        &:hover {
+                            background-color: black;
+                            font-family: "Press Start 2P", system-ui;
+                            color:#ff0077;
+                            padding: 10px;
+                        }
+                    }
+                }
+                .card-col {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    background-color:transparent;
+                    color: white;
+                    width: 100%;
+                    max-width: 60%;
+                    #playerImage {
+                        width: 100%;
+                        height: auto;
+                        display: block;
+                        margin-top: 20px;
+                        border-radius: 50%;
+                        .hidden {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .select-mode {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        min-height: 100vh;
+        background-image: url('/images/background.png');
+        background-size: cover;
+        .card {
+            display: flex;
+            flex-direction: column;
+            background-color: #d6dbe5;
+            padding: 20px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 50%;
+            h1 {
+                margin: 2rem;
+                display: flex;
+                justify-content: center;
+                font-family: 'BarcadeItalic-wzZz', sand-serif;
+                font-size: 3.5rem;
+                color: black;
+            }
+            .card-row {
+                display: flex;
+                flex-direction: row;
+                padding: 30px;
+                gap: 40px;
+                .card-col-menu{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                    max-width: 50%;
+                    padding: 5px;
+                    gap: 20px;
+                    a {
+                        display: block;
+                        font-size: 1.5rem;
+                        padding: 20px;
+                        gap: 20px;
+                        text-align: center;
+                        text-decoration: none;
+                        font-weight: 300;
+                        color: black;
+                        font-family: "Press Start 2P", system-ui;
+                        &:hover {
+                            background-color: black;
+                            font-family: "Press Start 2P", system-ui;
+                            color:#ff0077;
+                            padding: 10px;
+                        }
+                    }
+                }
+                .card-col {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    background-color:transparent;
+                    color: white;
+                    width: 100%;
+                    max-width: 60%;
+                    #playerImage {
+                        width: 100%;
+                        height: auto;
+                        display: block;
+                        margin-top: 20px;
+                        border-radius: 50%;
+                        .hidden {
+                            display: none;
+                        }
                     }
                 }
             }
