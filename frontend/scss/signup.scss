@@ -156,19 +156,23 @@
                 font-family: "Kanit", sans-serif;
                 font-size: 1rem;
                 color: #e9cea3;
-                button{
-                    background-color: black;
-                    a{
-                        background-color: transparent;
-                        transition: border-width 0.6s linear;
-                        font-size: 1.5rem;
-                        font-family: 'BarcadeNoBar-mzD9', sand-serif;
-                        text-decoration: none;
-                        color:#e9cea3;
-                    }
-                    &:hover{
-                        transform: scale(1.5);
-                    }
+            }
+            button{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                background-color: black;
+                a{
+                    background-color: transparent;
+                    transition: border-width 0.6s linear;
+                    font-size: 1.5rem;
+                    font-family: 'BarcadeNoBar-mzD9', sand-serif;
+                    text-decoration: none;
+                    color:#e9cea3;
+                }
+                &:hover{
+                    transform: scale(1.5);
                 }
             }
         }
@@ -265,19 +269,23 @@
                 font-family: "Kanit", sans-serif;
                 font-size: 1rem;
                 color: #e9cea3;
-                button{
-                    background-color: black;
-                    a{
-                        background-color: transparent;
-                        transition: border-width 0.6s linear;
-                        font-size: 1.5rem;
-                        font-family: 'BarcadeNoBar-mzD9', sand-serif;
-                        text-decoration: none;
-                        color:#e9cea3;
-                    }
-                    &:hover{
-                        transform: scale(1.5);
-                    }
+            }
+            button{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                background-color: black;
+                a{
+                    background-color: transparent;
+                    transition: border-width 0.6s linear;
+                    font-size: 1.5rem;
+                    font-family: 'BarcadeNoBar-mzD9', sand-serif;
+                    text-decoration: none;
+                    color:#e9cea3;
+                }
+                &:hover{
+                    transform: scale(1.5);
                 }
             }
         }
@@ -363,31 +371,35 @@
             flex-direction: column;
             h1 {
                 font-family: 'BarcadeItalic-wzZz', sand-serif;
-                font-size: 3rem;
+                font-size: 3.5rem;
                 color: #e9cea3;
             }
             #main-p {
                 font-family: "Kanit", sans-serif;
-                font-size: 1rem;
+                font-size: 1.5rem;
                 color: #e9cea3;
             }
             p{
                 font-family: "Kanit", sans-serif;
-                font-size: 1rem;
+                font-size: 1.5rem;
                 color: #e9cea3;
-                button{
-                    background-color: black;
-                    a{
-                        background-color: transparent;
-                        transition: border-width 0.6s linear;
-                        font-size: 1.5rem;
-                        font-family: 'BarcadeNoBar-mzD9', sand-serif;
-                        text-decoration: none;
-                        color:#e9cea3;
-                    }
-                    &:hover{
-                        transform: scale(1.5);
-                    }
+            }
+            button{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                background-color: black;
+                a{
+                    background-color: transparent;
+                    transition: border-width 0.6s linear;
+                    font-size: 1.5rem;
+                    font-family: 'BarcadeNoBar-mzD9', sand-serif;
+                    text-decoration: none;
+                    color:#e9cea3;
+                }
+                &:hover{
+                    transform: scale(1.5);
                 }
             }
         }
@@ -396,7 +408,7 @@
             border: solid 5px white;
             border-radius: 15px;
             width: 100%;
-            max-width: 50%;
+            max-width: 55%;
             padding: 15px;
             form {
                 margin: 0 auto;
@@ -415,7 +427,7 @@
                         margin: 0.5rem 0;
                         input {
                             width: 100%;
-                            max-width: 50%;
+                            max-width: 90%;
                             margin: 10px 0 0 0;
                             min-height: 2em;
                         }
@@ -473,31 +485,35 @@
             flex-direction: column;
             h1 {
                 font-family: 'BarcadeItalic-wzZz', sand-serif;
-                font-size: 3rem;
+                font-size: 4rem;
                 color: #e9cea3;
             }
             #main-p {
                 font-family: "Kanit", sans-serif;
-                font-size: 1rem;
+                font-size: 2rem;
                 color: #e9cea3;
             }
             p{
                 font-family: "Kanit", sans-serif;
-                font-size: 1rem;
+                font-size: 2rem;
                 color: #e9cea3;
-                button{
-                    background-color: black;
-                    a{
-                        background-color: transparent;
-                        transition: border-width 0.6s linear;
-                        font-size: 1.5rem;
-                        font-family: 'BarcadeNoBar-mzD9', sand-serif;
-                        text-decoration: none;
-                        color:#e9cea3;
-                    }
-                    &:hover{
-                        transform: scale(1.5);
-                    }
+            }
+            button{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                background-color: black;
+                a{
+                    background-color: transparent;
+                    transition: border-width 0.6s linear;
+                    font-size: 1.5rem;
+                    font-family: 'BarcadeNoBar-mzD9', sand-serif;
+                    text-decoration: none;
+                    color:#e9cea3;
+                }
+                &:hover{
+                    transform: scale(1.5);
                 }
             }
         }
@@ -506,7 +522,7 @@
             border: solid 5px white;
             border-radius: 15px;
             width: 100%;
-            max-width: 60%;
+            max-width: 55%;
             padding: 15px;
             form {
                 margin: 0 auto;

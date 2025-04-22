@@ -155,10 +155,14 @@
     font-size: 1rem;
     color: #e9cea3;
   }
-  .signup .title p button {
+  .signup .title button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-color: black;
   }
-  .signup .title p button a {
+  .signup .title button a {
     background-color: transparent;
     transition: border-width 0.6s linear;
     font-size: 1.5rem;
@@ -166,7 +170,7 @@
     text-decoration: none;
     color: #e9cea3;
   }
-  .signup .title p button:hover {
+  .signup .title button:hover {
     transform: scale(1.5);
   }
   .signup .form {
@@ -260,10 +264,14 @@
     font-size: 1rem;
     color: #e9cea3;
   }
-  .signup .title p button {
+  .signup .title button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-color: black;
   }
-  .signup .title p button a {
+  .signup .title button a {
     background-color: transparent;
     transition: border-width 0.6s linear;
     font-size: 1.5rem;
@@ -271,7 +279,7 @@
     text-decoration: none;
     color: #e9cea3;
   }
-  .signup .title p button:hover {
+  .signup .title button:hover {
     transform: scale(1.5);
   }
   .signup .form {
@@ -353,23 +361,27 @@
   }
   .signup .title h1 {
     font-family: "BarcadeItalic-wzZz", sand-serif;
-    font-size: 3rem;
+    font-size: 3.5rem;
     color: #e9cea3;
   }
   .signup .title #main-p {
     font-family: "Kanit", sans-serif;
-    font-size: 1rem;
+    font-size: 1.5rem;
     color: #e9cea3;
   }
   .signup .title p {
     font-family: "Kanit", sans-serif;
-    font-size: 1rem;
+    font-size: 1.5rem;
     color: #e9cea3;
   }
-  .signup .title p button {
+  .signup .title button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-color: black;
   }
-  .signup .title p button a {
+  .signup .title button a {
     background-color: transparent;
     transition: border-width 0.6s linear;
     font-size: 1.5rem;
@@ -377,7 +389,7 @@
     text-decoration: none;
     color: #e9cea3;
   }
-  .signup .title p button:hover {
+  .signup .title button:hover {
     transform: scale(1.5);
   }
   .signup .form {
@@ -385,7 +397,7 @@
     border: solid 5px white;
     border-radius: 15px;
     width: 100%;
-    max-width: 50%;
+    max-width: 55%;
     padding: 15px;
   }
   .signup .form form {
@@ -408,7 +420,7 @@
   }
   .signup .form form fieldset label input {
     width: 100%;
-    max-width: 50%;
+    max-width: 90%;
     margin: 10px 0 0 0;
     min-height: 2em;
   }
@@ -459,23 +471,27 @@
   }
   .signup .title h1 {
     font-family: "BarcadeItalic-wzZz", sand-serif;
-    font-size: 3rem;
+    font-size: 4rem;
     color: #e9cea3;
   }
   .signup .title #main-p {
     font-family: "Kanit", sans-serif;
-    font-size: 1rem;
+    font-size: 2rem;
     color: #e9cea3;
   }
   .signup .title p {
     font-family: "Kanit", sans-serif;
-    font-size: 1rem;
+    font-size: 2rem;
     color: #e9cea3;
   }
-  .signup .title p button {
+  .signup .title button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-color: black;
   }
-  .signup .title p button a {
+  .signup .title button a {
     background-color: transparent;
     transition: border-width 0.6s linear;
     font-size: 1.5rem;
@@ -483,7 +499,7 @@
     text-decoration: none;
     color: #e9cea3;
   }
-  .signup .title p button:hover {
+  .signup .title button:hover {
     transform: scale(1.5);
   }
   .signup .form {
@@ -491,7 +507,7 @@
     border: solid 5px white;
     border-radius: 15px;
     width: 100%;
-    max-width: 60%;
+    max-width: 55%;
     padding: 15px;
   }
   .signup .form form {
