@@ -13,6 +13,7 @@ const http_1 = require("http");
 const socket_io_1 = require("socket.io");
 const socket_handler_1 = require("./sockets/socket.handler");
 const multiplayer_handler_1 = require("./sockets/multiplayer.handler");
+const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const app = (0, express_1.default)();
 const ioServer = (0, http_1.createServer)(app);
 const io = new socket_io_1.Server(ioServer, {
@@ -23,6 +24,9 @@ const io = new socket_io_1.Server(ioServer, {
 });
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
+app.use(express_1.default.json());
+app.use(express_1.default.urlencoded({ extended: true }));
+app.use((0, cookie_parser_1.default)());
 // Frontend CORS
 app.use((0, cors_1.default)({
     origin: 'http://localhost:4321',

@@ -581,6 +581,7 @@
   flex-direction: column;
   background-image: url("/images/background.png");
   background-size: cover;
+  padding: 20px;
   height: 100%;
 }
 .login .title {
@@ -1515,7 +1516,6 @@
     display: none;
   }
 }
-/*Extra small devices*/
 @font-face {
   font-family: "BarcadeItalic-wzZz";
   src: url("/fonts/barcade-font/BarcadeItalic-wzZz.otf") format("truetype");
@@ -1585,54 +1585,15 @@
   font-size: 1.5rem;
   font-family: "BarcadeNoBar-mzD9", sand-serif;
 }
-
-/* Extra small devices*/
-@media only screen and (max-width: 600px) {
-  .access-card {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url("/images/background.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-  .access-card .card {
-    width: 100%;
-    max-width: 60%;
-  }
-  .access-card .card .card-body .marker {
-    height: 10px;
-    width: 300px;
-    margin: 10px auto;
-  }
-  .access-card .card .card-body .row-emojis .col-emoji {
-    font-size: 2.5rem;
-  }
-  .access-card .card .card-body .card-title {
-    font-size: 2.5rem;
-  }
-  .access-card .card .container.buttons {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  }
-  .access-card .card .container.buttons .btnAccess {
-    width: 100%;
-    max-width: 30%;
-    font-size: 1.5rem;
-  }
-  .access-card .card .container.buttons .btnAccess a {
-    text-decoration: none;
-    color: white;
-  }
-  .access-card .card .container.buttons .btnAccess:hover {
-    /*  font-size: 3rem; */
-    transform: scale(1.5);
-  }
+.access-card .card .container.buttons .btnAccess a {
+  text-decoration: none;
+  color: white;
 }
+.access-card .card .container.buttons .btnAccess:hover {
+  /*  font-size: 3rem; */
+  transform: scale(1.5);
+}
+
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
   .access-card {

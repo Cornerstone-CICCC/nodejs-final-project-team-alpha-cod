@@ -31,6 +31,11 @@ const signupUser = async (req: Request, res: Response) => {
 
 
 
+import jwt from 'jsonwebtoken';
+
+// Add this where you define constants
+const SECRET = process.env.JWT_SECRET || 'default_secret';
+
 export const loginUser = async (req: Request, res: Response) => {
   const { email, password } = req.body;
 
@@ -47,12 +52,26 @@ export const loginUser = async (req: Request, res: Response) => {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
 
+    // Create JWT token
+    const token = jwt.sign(
+      { id: user._id, email: user.email, name: user.firstname },
+      SECRET,
+      { expiresIn: '1d' }
+    );
+
+    // Set cookie
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: false, // true in production with HTTPS
+      sameSite: 'lax',
+      maxAge: 24 * 60 * 60 * 1000 // 1 day
+    });
+
     return res.status(200).json({
       message: 'Login successful',
       user: {
         name: user.firstname,
-        email: user.email,
-        // Don't send the hashed password back!
+        email: user.email
       }
     });
 
@@ -61,10 +80,40 @@ export const loginUser = async (req: Request, res: Response) => {
     return res.status(500).json({ message: 'Internal server error' });
   }
 };
+export const logoutUser = (req: Request, res: Response) => {
+  res.clearCookie('token');
+  return res.status(200).json({ message: 'Logged out successfully' });
+};
+
+export const getAllUsers = async (req: Request, res: Response) => {
+  try {
+    const users = await User.find().select('-password'); // Exclude passwords
+    return res.status(200).json({ users });
+  } catch (error) {
+    console.error('Get users error:', error);
+    return res.status(500).json({ message: 'Failed to fetch users' });
+  }
+};
+
+export const getUserByEmail = async (req: Request, res: Response) => {
+  try {
+    const user = await User.findOne({ email: req.params.email }).select('-password');
+    if (!user) return res.status(404).json({ message: 'User not found' });
+    return res.status(200).json({ user });
+  } catch (error) {
+    console.error('Get user error:', error);
+    return res.status(500).json({ message: 'Failed to fetch user' });
+  }
+};
 
 
 
 export default {
   signupUser,
+  getAllUsers,
+  logoutUser,
+  getUserByEmail,
+
+
   loginUser
 }

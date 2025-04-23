@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.loginUser = void 0;
+exports.getUserByEmail = exports.getAllUsers = exports.logoutUser = exports.loginUser = void 0;
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const user_model_1 = require("../models/user.model");
 //Signup User
@@ -34,6 +34,9 @@ const signupUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         res.status(500).json({ message: "Signup failed", error: err });
     }
 });
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+// Add this where you define constants
+const SECRET = process.env.JWT_SECRET || 'default_secret';
 const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { email, password } = req.body;
     try {
@@ -45,12 +48,20 @@ const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         if (!passwordMatch) {
             return res.status(401).json({ message: 'Invalid email or password' });
         }
+        // Create JWT token
+        const token = jsonwebtoken_1.default.sign({ id: user._id, email: user.email, name: user.firstname }, SECRET, { expiresIn: '1d' });
+        // Set cookie
+        res.cookie('token', token, {
+            httpOnly: true,
+            secure: false, // true in production with HTTPS
+            sameSite: 'lax',
+            maxAge: 24 * 60 * 60 * 1000 // 1 day
+        });
         return res.status(200).json({
             message: 'Login successful',
             user: {
                 name: user.firstname,
-                email: user.email,
-                // Don't send the hashed password back!
+                email: user.email
             }
         });
     }
@@ -60,7 +71,39 @@ const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.loginUser = loginUser;
+const logoutUser = (req, res) => {
+    res.clearCookie('token');
+    return res.status(200).json({ message: 'Logged out successfully' });
+};
+exports.logoutUser = logoutUser;
+const getAllUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const users = yield user_model_1.User.find().select('-password'); // Exclude passwords
+        return res.status(200).json({ users });
+    }
+    catch (error) {
+        console.error('Get users error:', error);
+        return res.status(500).json({ message: 'Failed to fetch users' });
+    }
+});
+exports.getAllUsers = getAllUsers;
+const getUserByEmail = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const user = yield user_model_1.User.findOne({ email: req.params.email }).select('-password');
+        if (!user)
+            return res.status(404).json({ message: 'User not found' });
+        return res.status(200).json({ user });
+    }
+    catch (error) {
+        console.error('Get user error:', error);
+        return res.status(500).json({ message: 'Failed to fetch user' });
+    }
+});
+exports.getUserByEmail = getUserByEmail;
 exports.default = {
     signupUser,
+    getAllUsers: exports.getAllUsers,
+    logoutUser: exports.logoutUser,
+    getUserByEmail: exports.getUserByEmail,
     loginUser: exports.loginUser
 };

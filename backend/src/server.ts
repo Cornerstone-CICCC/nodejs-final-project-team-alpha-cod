@@ -8,6 +8,8 @@ import { createServer } from 'http';
 import { Server } from 'socket.io';
 import { socketHandler } from './sockets/socket.handler';
 import { multiHandler } from './sockets/multiplayer.handler';
+import cookieParser from 'cookie-parser';
+
 
 const app = express();
 const ioServer = createServer(app);
@@ -20,6 +22,10 @@ const io = new Server(ioServer, {
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use(cookieParser());
 
 // Frontend CORS
 app.use(cors({
