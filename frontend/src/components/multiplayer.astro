@@ -1,13 +1,13 @@
+---
+import ChatBox from '../components/chatbox.astro';
+---
+
 <div class="multigame">
     <header id="header">
         <div class="tic-tac-toe-intro">
         <h1 class="title">TICPACTOE</h1>
         <p class="subtitle">PLAY AGAINST YOUR FRIENDS!</p>
         <h3 id="titleHeader"></h3>
-        <div id="Token">
-            <div class="player player-active red" id="xPlayerDisplay">X</div>
-            <div class="player yellow" id="oPlayerDisplay">O</div>
-        </div>
     </header>
 
     <div id="board">
@@ -36,6 +36,8 @@
         <h3 class="notif-text"></h3>
         <button class="confirm">Got it!</button>
     </div>
+
+    <ChatBox />
 
     <div><span id="pointsDisplay"></span></div>
     <button id="restartBtn">
@@ -140,7 +142,7 @@
             }
         }
         if (board.every(cell => cell !== '')) {
-            mySymbol.textContent = 'Draw!'
+            mySymbol.innerHTML = 'Draw!'
             restartBtn.style.visibility = 'visible'
             return true
         }
