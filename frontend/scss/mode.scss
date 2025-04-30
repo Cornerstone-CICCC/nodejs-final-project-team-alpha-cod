@@ -57,10 +57,12 @@
                 padding: 5px;
                 gap: 20px;
                 a {
-                    display: block;
+                    display: flex;
+                    justify-content: center;
+                    text-align: center;
+                    align-items: center;
                     padding: 20px;
                     gap: 20px;
-                    text-align: center;
                     text-decoration: none;
                     font-weight: 300;
                     color: black;
@@ -75,6 +77,8 @@
             }
             .card-col {
                 display: flex;
+                justify-content: center;
+                align-items: center;
                 justify-content: center;
                 align-items: center;
                 flex-direction: column;

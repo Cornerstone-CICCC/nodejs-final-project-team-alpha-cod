@@ -3,6 +3,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Rubik+Dirt&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 @font-face {
   font-family: "BarcadeItalic-wzZz";
   src: url("/fonts/barcade-font/BarcadeItalic-wzZz.otf") format("truetype");
@@ -1151,10 +1152,12 @@
   gap: 20px;
 }
 .select-mode .card .card-row .card-col-menu a {
-  display: block;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
   padding: 20px;
   gap: 20px;
-  text-align: center;
   text-decoration: none;
   font-weight: 300;
   color: black;
@@ -1533,7 +1536,7 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-image: url("/public/images/background.png");
+  background-image: url("/images/background.png");
   background-size: cover;
 }
 .access-card .card {
