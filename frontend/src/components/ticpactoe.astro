@@ -191,15 +191,17 @@
             function randomPick() {
                 isPauseGame = true;
                 setTimeout(() => {
-                    let randomIndex;
-                    do {
-                        randomIndex = Math.floor(Math.random() * inputCells.length);
-                    } while (inputCells[randomIndex] !== '');
-                    updateCell(cells[randomIndex] as HTMLElement, randomIndex);
-                    if (!checkWinner()) {
-                        changePlayer();
-                        isPauseGame = false;
-                    }
+                    
+
+                    // let randomIndex;
+                    // do {
+                    //     randomIndex = Math.floor(Math.random() * inputCells.length);
+                    // } while (inputCells[randomIndex] !== '');
+                    // updateCell(cells[randomIndex] as HTMLElement, randomIndex);
+                    // if (!checkWinner()) {
+                    //     changePlayer();
+                    //     isPauseGame = false;
+                    // }
                 }, 1000);
             }
 
