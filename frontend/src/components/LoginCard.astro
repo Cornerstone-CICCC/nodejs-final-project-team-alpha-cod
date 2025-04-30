@@ -29,8 +29,49 @@
             
             <!--LogIn -->
             <button class="btn btnAccess" aria-label="log-in">
-                <a href="/mode">LogIn</a>
+                LogIn
             </button>
           </form>
     </div>
 </div>
+---
+---
+<!-- Your HTML above -->
+
+<script type="module">
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("login-form");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      try {
+        const res = await fetch("http://localhost:3600/user/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ email, password }),
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+          alert("Login successful! 🎉");
+          
+          // Optionally: redirect
+          window.location.href = "/mode";
+        } else {
+          alert(data.message || "Login failed");
+        }
+
+      } catch (err) {
+        console.error("Login request error:", err);
+        alert("Something went wrong. Try again.");
+      }
+    });
+  });
+</script>

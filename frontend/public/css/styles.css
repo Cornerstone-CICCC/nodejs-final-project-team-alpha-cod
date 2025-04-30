@@ -3,6 +3,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Rubik+Dirt&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 @font-face {
   font-family: "BarcadeItalic-wzZz";
   src: url("/fonts/barcade-font/BarcadeItalic-wzZz.otf") format("truetype");
@@ -120,6 +121,446 @@
   transform: scale(1.5);
 }
 
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .signup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-image: url("/images/background.png");
+    background-size: cover;
+    padding: 20px;
+  }
+  .signup .title {
+    margin: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .signup .title h1 {
+    font-family: "BarcadeItalic-wzZz", sand-serif;
+    font-size: 3rem;
+    color: #e9cea3;
+  }
+  .signup .title #main-p {
+    font-family: "Kanit", sans-serif;
+    font-size: 1rem;
+    color: #e9cea3;
+  }
+  .signup .title p {
+    display: flex;
+    flex-direction: column;
+    font-family: "Kanit", sans-serif;
+    font-size: 1rem;
+    color: #e9cea3;
+  }
+  .signup .title button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+  }
+  .signup .title button a {
+    background-color: transparent;
+    transition: border-width 0.6s linear;
+    font-size: 1.5rem;
+    font-family: "BarcadeNoBar-mzD9", sand-serif;
+    text-decoration: none;
+    color: #e9cea3;
+  }
+  .signup .title button:hover {
+    transform: scale(1.5);
+  }
+  .signup .form {
+    background-color: #0e333c;
+    border: solid 5px white;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 70%;
+    padding: 15px;
+  }
+  .signup .form form {
+    margin: 0 auto;
+    max-width: 500px;
+    min-width: 300px;
+    width: 60vw;
+    padding: 2em;
+  }
+  .signup .form form fieldset {
+    border: none;
+    padding: 2rem 0;
+  }
+  .signup .form form fieldset label {
+    display: block;
+    font-family: "Kanit", sans-serif;
+    font-size: 1rem;
+    color: #e9cea3;
+    margin: 0.5rem 0;
+  }
+  .signup .form form fieldset label input {
+    width: 100%;
+    margin: 10px 0 0 0;
+    min-height: 2em;
+  }
+  .signup .form form label[for=terms-and-conditions] {
+    font-family: "Kanit", sans-serif;
+    color: #e9cea3;
+  }
+  .signup .form form label[for=terms-and-conditions] a {
+    font-family: "Kanit", sans-serif;
+    color: #e9cea3;
+    font-weight: bold;
+  }
+  .signup .form form .btnAccess {
+    display: block;
+    margin: 1em auto;
+    min-width: 300px;
+    width: 60%;
+    font-size: 1.1rem;
+    background-color: transparent;
+    font-size: 1.5rem;
+    font-family: "BarcadeNoBar-mzD9", sand-serif;
+  }
+  .signup .form form .btnAccess a {
+    color: #e9cea3;
+    text-decoration: none;
+  }
+  .signup .form form .btnAccess:hover {
+    transform: scale(1.5);
+  }
+}
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .signup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-image: url("/images/background.png");
+    background-size: cover;
+    padding: 20px;
+  }
+  .signup .title {
+    margin: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .signup .title h1 {
+    font-family: "BarcadeItalic-wzZz", sand-serif;
+    font-size: 3rem;
+    color: #e9cea3;
+  }
+  .signup .title #main-p {
+    font-family: "Kanit", sans-serif;
+    font-size: 1rem;
+    color: #e9cea3;
+  }
+  .signup .title p {
+    font-family: "Kanit", sans-serif;
+    font-size: 1rem;
+    color: #e9cea3;
+  }
+  .signup .title button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+  }
+  .signup .title button a {
+    background-color: transparent;
+    transition: border-width 0.6s linear;
+    font-size: 1.5rem;
+    font-family: "BarcadeNoBar-mzD9", sand-serif;
+    text-decoration: none;
+    color: #e9cea3;
+  }
+  .signup .title button:hover {
+    transform: scale(1.5);
+  }
+  .signup .form {
+    background-color: #0e333c;
+    border: solid 5px white;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 60%;
+    padding: 15px;
+  }
+  .signup .form form {
+    margin: 0 auto;
+    max-width: 500px;
+    min-width: 300px;
+    width: 60vw;
+    padding: 2em;
+  }
+  .signup .form form fieldset {
+    border: none;
+    padding: 2rem 0;
+  }
+  .signup .form form fieldset label {
+    display: block;
+    font-family: "Kanit", sans-serif;
+    font-size: 1rem;
+    color: #e9cea3;
+    margin: 0.5rem 0;
+  }
+  .signup .form form fieldset label input {
+    width: 100%;
+    max-width: 80%;
+    margin: 10px 0 0 0;
+    min-height: 2em;
+  }
+  .signup .form form label[for=terms-and-conditions] {
+    font-family: "Kanit", sans-serif;
+    color: #e9cea3;
+  }
+  .signup .form form label[for=terms-and-conditions] a {
+    font-family: "Kanit", sans-serif;
+    color: #e9cea3;
+    font-weight: bold;
+  }
+  .signup .form form .btnAccess {
+    display: block;
+    margin: 1em auto;
+    min-width: 300px;
+    width: 60%;
+    font-size: 1.1rem;
+    background-color: transparent;
+    font-size: 1.5rem;
+    font-family: "BarcadeNoBar-mzD9", sand-serif;
+  }
+  .signup .form form .btnAccess a {
+    color: #e9cea3;
+    text-decoration: none;
+  }
+  .signup .form form .btnAccess:hover {
+    transform: scale(1.5);
+  }
+}
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .signup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-image: url("/images/background.png");
+    background-size: cover;
+    padding: 20px;
+  }
+  .signup .title {
+    margin: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .signup .title h1 {
+    font-family: "BarcadeItalic-wzZz", sand-serif;
+    font-size: 3.5rem;
+    color: #e9cea3;
+  }
+  .signup .title #main-p {
+    font-family: "Kanit", sans-serif;
+    font-size: 1.5rem;
+    color: #e9cea3;
+  }
+  .signup .title p {
+    font-family: "Kanit", sans-serif;
+    font-size: 1.5rem;
+    color: #e9cea3;
+  }
+  .signup .title button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+  }
+  .signup .title button a {
+    background-color: transparent;
+    transition: border-width 0.6s linear;
+    font-size: 1.5rem;
+    font-family: "BarcadeNoBar-mzD9", sand-serif;
+    text-decoration: none;
+    color: #e9cea3;
+  }
+  .signup .title button:hover {
+    transform: scale(1.5);
+  }
+  .signup .form {
+    background-color: #0e333c;
+    border: solid 5px white;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 55%;
+    padding: 15px;
+  }
+  .signup .form form {
+    margin: 0 auto;
+    max-width: 500px;
+    min-width: 300px;
+    width: 60vw;
+    padding: 2em;
+  }
+  .signup .form form fieldset {
+    border: none;
+    padding: 2rem 0;
+  }
+  .signup .form form fieldset label {
+    display: block;
+    font-family: "Kanit", sans-serif;
+    font-size: 1rem;
+    color: #e9cea3;
+    margin: 0.5rem 0;
+  }
+  .signup .form form fieldset label input {
+    width: 100%;
+    max-width: 90%;
+    margin: 10px 0 0 0;
+    min-height: 2em;
+  }
+  .signup .form form label[for=terms-and-conditions] {
+    font-family: "Kanit", sans-serif;
+    color: #e9cea3;
+  }
+  .signup .form form label[for=terms-and-conditions] a {
+    font-family: "Kanit", sans-serif;
+    color: #e9cea3;
+    font-weight: bold;
+  }
+  .signup .form form .btnAccess {
+    display: block;
+    margin: 1em auto;
+    min-width: 300px;
+    width: 60%;
+    font-size: 1.1rem;
+    background-color: transparent;
+    font-size: 1.5rem;
+    font-family: "BarcadeNoBar-mzD9", sand-serif;
+  }
+  .signup .form form .btnAccess a {
+    color: #e9cea3;
+    text-decoration: none;
+  }
+  .signup .form form .btnAccess:hover {
+    transform: scale(1.5);
+  }
+}
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .signup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-image: url("/images/background.png");
+    background-size: cover;
+    padding: 20px;
+  }
+  .signup .title {
+    margin: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .signup .title h1 {
+    font-family: "BarcadeItalic-wzZz", sand-serif;
+    font-size: 4rem;
+    color: #e9cea3;
+  }
+  .signup .title #main-p {
+    font-family: "Kanit", sans-serif;
+    font-size: 2rem;
+    color: #e9cea3;
+  }
+  .signup .title p {
+    font-family: "Kanit", sans-serif;
+    font-size: 2rem;
+    color: #e9cea3;
+  }
+  .signup .title button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+  }
+  .signup .title button a {
+    background-color: transparent;
+    transition: border-width 0.6s linear;
+    font-size: 1.5rem;
+    font-family: "BarcadeNoBar-mzD9", sand-serif;
+    text-decoration: none;
+    color: #e9cea3;
+  }
+  .signup .title button:hover {
+    transform: scale(1.5);
+  }
+  .signup .form {
+    background-color: #0e333c;
+    border: solid 5px white;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 55%;
+    padding: 15px;
+  }
+  .signup .form form {
+    margin: 0 auto;
+    max-width: 500px;
+    min-width: 300px;
+    width: 60vw;
+    padding: 2em;
+  }
+  .signup .form form fieldset {
+    border: none;
+    padding: 2rem 0;
+  }
+  .signup .form form fieldset label {
+    display: block;
+    font-family: "Kanit", sans-serif;
+    font-size: 1.2rem;
+    color: #e9cea3;
+    margin: 0.5rem 0;
+  }
+  .signup .form form fieldset label input {
+    width: 100%;
+    margin: 10px 0 0 0;
+    min-height: 2em;
+  }
+  .signup .form form label[for=terms-and-conditions] {
+    font-family: "Kanit", sans-serif;
+    color: #e9cea3;
+  }
+  .signup .form form label[for=terms-and-conditions] a {
+    font-family: "Kanit", sans-serif;
+    color: #e9cea3;
+    font-weight: bold;
+  }
+  .signup .form form .btnAccess {
+    display: block;
+    margin: 1em auto;
+    min-width: 300px;
+    width: 60%;
+    font-size: 1.3rem;
+    background-color: transparent;
+    font-size: 1.5rem;
+    font-family: "BarcadeNoBar-mzD9", sand-serif;
+  }
+  .signup .form form .btnAccess a {
+    color: #e9cea3;
+    text-decoration: none;
+  }
+  .signup .form form .btnAccess:hover {
+    transform: scale(1.5);
+  }
+}
 @font-face {
   font-family: "BarcadeItalic-wzZz";
   src: url("/fonts/barcade-font/BarcadeItalic-wzZz.otf") format("truetype");
@@ -141,7 +582,6 @@
   flex-direction: column;
   background-image: url("/images/background.png");
   background-size: cover;
-  padding: 20px;
   height: 100%;
 }
 .login .title {
@@ -185,7 +625,7 @@
   border: solid 5px white;
   border-radius: 15px;
   width: 100%;
-  max-width: 50%;
+  max-width: 70%;
   padding: 15px;
 }
 .login .form form {
@@ -219,13 +659,13 @@
   font-weight: bold;
 }
 .login .form form .btnAccess {
-  display: block;
-  margin: 1em auto;
-  min-width: 300px;
-  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 50%;
   font-size: 1.1rem;
   background-color: transparent;
-  font-size: 1.5rem;
   font-family: "BarcadeNoBar-mzD9", sand-serif;
 }
 .login .form form .btnAccess a {
@@ -233,9 +673,430 @@
   text-decoration: none;
 }
 .login .form form .btnAccess:hover {
-  transform: scale(1.5);
+  transform: scale(1);
 }
 
+/* Extra small devices*/
+@media only screen and (max-width: 600px) {
+  .login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-image: url("/images/background.png");
+    background-size: cover;
+    height: 100%;
+  }
+  .login .title {
+    margin: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .login .title h1 {
+    font-family: "BarcadeItalic-wzZz", sand-serif;
+    font-size: 3rem;
+    color: #e9cea3;
+  }
+  .login .title #main-p {
+    font-family: "Kanit", sans-serif;
+    font-size: 1rem;
+    color: #e9cea3;
+  }
+  .login .title p {
+    font-family: "Kanit", sans-serif;
+    font-size: 1rem;
+    color: #e9cea3;
+  }
+  .login .title p button {
+    background-color: black;
+  }
+  .login .title p button a {
+    background-color: transparent;
+    transition: border-width 0.6s linear;
+    font-size: 1.5rem;
+    font-family: "BarcadeNoBar-mzD9", sand-serif;
+    text-decoration: none;
+    color: #e9cea3;
+  }
+  .login .title p button:hover {
+    transform: scale(1.5);
+  }
+  .login .form {
+    background-color: #0e333c;
+    border: solid 5px white;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 70%;
+    padding: 15px;
+  }
+  .login .form form {
+    margin: 0 auto;
+    max-width: 500px;
+    min-width: 300px;
+    width: 60vw;
+    padding: 2em;
+  }
+  .login .form form fieldset {
+    border: none;
+    padding: 2rem 0;
+  }
+  .login .form form fieldset label {
+    display: block;
+    font-family: "Kanit", sans-serif;
+    font-size: 1rem;
+    color: #e9cea3;
+    margin: 0.5rem 0;
+  }
+  .login .form form fieldset label input {
+    width: 100%;
+    max-width: 70%;
+    margin: 10px 0 0 0;
+    min-height: 2em;
+  }
+  .login .form form label[for=terms-and-conditions] {
+    color: #e9cea3;
+  }
+  .login .form form label[for=terms-and-conditions] a {
+    color: #e9cea3;
+    font-weight: bold;
+  }
+  .login .form form .btnAccess {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 60%;
+    font-size: 1.1rem;
+    background-color: transparent;
+    font-family: "BarcadeNoBar-mzD9", sand-serif;
+  }
+  .login .form form .btnAccess a {
+    color: #e9cea3;
+    text-decoration: none;
+  }
+  .login .form form .btnAccess:hover {
+    transform: scale(1);
+  }
+}
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-image: url("/images/background.png");
+    background-size: cover;
+    height: 100%;
+  }
+  .login .title {
+    margin: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .login .title h1 {
+    font-family: "BarcadeItalic-wzZz", sand-serif;
+    font-size: 3rem;
+    color: #e9cea3;
+  }
+  .login .title #main-p {
+    font-family: "Kanit", sans-serif;
+    font-size: 1rem;
+    color: #e9cea3;
+  }
+  .login .title p {
+    font-family: "Kanit", sans-serif;
+    font-size: 1rem;
+    color: #e9cea3;
+  }
+  .login .title p button {
+    background-color: black;
+  }
+  .login .title p button a {
+    background-color: transparent;
+    transition: border-width 0.6s linear;
+    font-size: 1.5rem;
+    font-family: "BarcadeNoBar-mzD9", sand-serif;
+    text-decoration: none;
+    color: #e9cea3;
+  }
+  .login .title p button:hover {
+    transform: scale(1.5);
+  }
+  .login .form {
+    background-color: #0e333c;
+    border: solid 5px white;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 50%;
+    padding: 15px;
+  }
+  .login .form form {
+    margin: 0 auto;
+    max-width: 500px;
+    min-width: 300px;
+    width: 60vw;
+    padding: 2em;
+  }
+  .login .form form fieldset {
+    border: none;
+    padding: 2rem 0;
+  }
+  .login .form form fieldset label {
+    display: block;
+    font-family: "Kanit", sans-serif;
+    font-size: 1rem;
+    color: #e9cea3;
+    margin: 0.5rem 0;
+  }
+  .login .form form fieldset label input {
+    width: 100%;
+    max-width: 70%;
+    margin: 10px 0 0 0;
+    min-height: 2em;
+  }
+  .login .form form label[for=terms-and-conditions] {
+    color: #e9cea3;
+  }
+  .login .form form label[for=terms-and-conditions] a {
+    color: #e9cea3;
+    font-weight: bold;
+  }
+  .login .form form .btnAccess {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 55%;
+    font-size: 1.1rem;
+    background-color: transparent;
+    font-family: "BarcadeNoBar-mzD9", sand-serif;
+  }
+  .login .form form .btnAccess a {
+    color: #e9cea3;
+    text-decoration: none;
+  }
+  .login .form form .btnAccess:hover {
+    transform: scale(1);
+  }
+}
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-image: url("/images/background.png");
+    background-size: cover;
+    height: 100%;
+  }
+  .login .title {
+    margin: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .login .title h1 {
+    font-family: "BarcadeItalic-wzZz", sand-serif;
+    font-size: 3rem;
+    color: #e9cea3;
+  }
+  .login .title #main-p {
+    font-family: "Kanit", sans-serif;
+    font-size: 1rem;
+    color: #e9cea3;
+  }
+  .login .title p {
+    font-family: "Kanit", sans-serif;
+    font-size: 1rem;
+    color: #e9cea3;
+  }
+  .login .title p button {
+    background-color: black;
+  }
+  .login .title p button a {
+    background-color: transparent;
+    transition: border-width 0.6s linear;
+    font-size: 1.5rem;
+    font-family: "BarcadeNoBar-mzD9", sand-serif;
+    text-decoration: none;
+    color: #e9cea3;
+  }
+  .login .title p button:hover {
+    transform: scale(1.5);
+  }
+  .login .form {
+    background-color: #0e333c;
+    border: solid 5px white;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 40%;
+    padding: 15px;
+  }
+  .login .form form {
+    margin: 0 auto;
+    max-width: 500px;
+    min-width: 300px;
+    width: 60vw;
+    padding: 2em;
+  }
+  .login .form form fieldset {
+    border: none;
+    padding: 2rem 0;
+  }
+  .login .form form fieldset label {
+    display: block;
+    font-family: "Kanit", sans-serif;
+    font-size: 1rem;
+    color: #e9cea3;
+    margin: 0.5rem 0;
+  }
+  .login .form form fieldset label input {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 70%;
+    margin: 10px 0 0 0;
+    min-height: 2em;
+  }
+  .login .form form label[for=terms-and-conditions] {
+    color: #e9cea3;
+  }
+  .login .form form label[for=terms-and-conditions] a {
+    color: #e9cea3;
+    font-weight: bold;
+  }
+  .login .form form .btnAccess {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 55%;
+    font-size: 1.1rem;
+    background-color: transparent;
+    font-family: "BarcadeNoBar-mzD9", sand-serif;
+  }
+  .login .form form .btnAccess a {
+    color: #e9cea3;
+    text-decoration: none;
+  }
+  .login .form form .btnAccess:hover {
+    transform: scale(1);
+  }
+}
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-image: url("/images/background.png");
+    background-size: cover;
+    height: 100%;
+  }
+  .login .title {
+    margin: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .login .title h1 {
+    font-family: "BarcadeItalic-wzZz", sand-serif;
+    font-size: 3rem;
+    color: #e9cea3;
+  }
+  .login .title #main-p {
+    font-family: "Kanit", sans-serif;
+    font-size: 2rem;
+    color: #e9cea3;
+  }
+  .login .title p {
+    font-family: "Kanit", sans-serif;
+    font-size: 2rem;
+    color: #e9cea3;
+  }
+  .login .title p button {
+    background-color: black;
+  }
+  .login .title p button a {
+    background-color: transparent;
+    transition: border-width 0.6s linear;
+    font-size: 1.5rem;
+    font-family: "BarcadeNoBar-mzD9", sand-serif;
+    text-decoration: none;
+    color: #e9cea3;
+  }
+  .login .title p button:hover {
+    transform: scale(1.5);
+  }
+  .login .form {
+    background-color: #0e333c;
+    border: solid 5px white;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 50%;
+    padding: 15px;
+  }
+  .login .form form {
+    margin: 0 auto;
+    max-width: 500px;
+    min-width: 300px;
+    width: 60vw;
+    padding: 2em;
+  }
+  .login .form form fieldset {
+    border: none;
+    padding: 2rem 0;
+  }
+  .login .form form fieldset label {
+    display: block;
+    font-family: "Kanit", sans-serif;
+    font-size: 1.5rem;
+    color: #e9cea3;
+    margin: 0.5rem 0;
+  }
+  .login .form form fieldset label input {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 80%;
+    margin: 10px 0 0 0;
+    min-height: 2em;
+    font-size: 1.5rem;
+  }
+  .login .form form label[for=terms-and-conditions] {
+    color: #e9cea3;
+  }
+  .login .form form label[for=terms-and-conditions] a {
+    color: #e9cea3;
+    font-weight: bold;
+  }
+  .login .form form .btnAccess {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 55%;
+    font-size: 1.5rem;
+    background-color: transparent;
+    font-family: "BarcadeNoBar-mzD9", sand-serif;
+  }
+  .login .form form .btnAccess a {
+    color: #e9cea3;
+    text-decoration: none;
+  }
+  .login .form form .btnAccess:hover {
+    transform: scale(1);
+  }
+}
 @font-face {
   font-family: "BarcadeItalic-wzZz";
   src: url("/fonts/barcade-font/BarcadeItalic-wzZz.otf") format("truetype");
@@ -273,7 +1134,6 @@
   display: flex;
   justify-content: center;
   font-family: "BarcadeItalic-wzZz", sand-serif;
-  font-size: 5rem;
   color: black;
 }
 .select-mode .card .card-row {
@@ -285,9 +1145,9 @@
 .select-mode .card .card-row .card-col-menu {
   display: flex;
   flex-direction: column;
-  background-color: none;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  max-width: 30%;
   padding: 5px;
   gap: 20px;
 }
@@ -300,13 +1160,13 @@
   gap: 20px;
   text-decoration: none;
   font-weight: 300;
-  color: #ff114f;
+  color: black;
   font-family: "Press Start 2P", system-ui;
 }
 .select-mode .card .card-row .card-col-menu a:hover {
-  background-color: #fabe00;
-  font-family: "Rubik Dirt", system-ui;
-  color: black;
+  background-color: black;
+  font-family: "Press Start 2P", system-ui;
+  color: #ff0077;
   padding: 10px;
 }
 .select-mode .card .card-row .card-col {
@@ -314,21 +1174,351 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background-color: transparent;
   color: white;
   width: 100%;
-  max-width: 70%;
-  height: 100%;
+  max-width: 60%;
 }
 .select-mode .card .card-row .card-col #playerImage {
-  width: 150px;
+  width: 100%;
   height: auto;
   display: block;
   margin-top: 20px;
+  border-radius: 50%;
 }
 .select-mode .card .card-row .card-col #playerImage .hidden {
   display: none;
 }
 
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .select-mode {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    min-height: 100vh;
+    background-image: url("/images/background.png");
+    background-size: cover;
+  }
+  .select-mode .card {
+    display: flex;
+    flex-direction: column;
+    background-color: #d6dbe5;
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 50%;
+  }
+  .select-mode .card h1 {
+    margin: 2rem;
+    display: flex;
+    justify-content: center;
+    font-family: "BarcadeItalic-wzZz", sand-serif;
+    font-size: 2rem;
+    color: black;
+  }
+  .select-mode .card .card-row {
+    display: flex;
+    flex-direction: row;
+    padding: 30px;
+    gap: 40px;
+  }
+  .select-mode .card .card-row .card-col-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 50%;
+    padding: 5px;
+    gap: 20px;
+  }
+  .select-mode .card .card-row .card-col-menu a {
+    display: block;
+    font-size: 1rem;
+    padding: 20px;
+    gap: 20px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 300;
+    color: black;
+    font-family: "Press Start 2P", system-ui;
+  }
+  .select-mode .card .card-row .card-col-menu a:hover {
+    background-color: black;
+    font-family: "Press Start 2P", system-ui;
+    color: #ff0077;
+    padding: 10px;
+  }
+  .select-mode .card .card-row .card-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: transparent;
+    color: white;
+    width: 100%;
+    max-width: 60%;
+  }
+  .select-mode .card .card-row .card-col #playerImage {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-top: 20px;
+    border-radius: 50%;
+  }
+  .select-mode .card .card-row .card-col #playerImage .hidden {
+    display: none;
+  }
+}
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+  .select-mode {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    min-height: 100vh;
+    background-image: url("/images/background.png");
+    background-size: cover;
+  }
+  .select-mode .card {
+    display: flex;
+    flex-direction: column;
+    background-color: #d6dbe5;
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 50%;
+  }
+  .select-mode .card h1 {
+    margin: 2rem;
+    display: flex;
+    justify-content: center;
+    font-family: "BarcadeItalic-wzZz", sand-serif;
+    font-size: 2.5rem;
+    color: black;
+  }
+  .select-mode .card .card-row {
+    display: flex;
+    flex-direction: row;
+    padding: 30px;
+    gap: 40px;
+  }
+  .select-mode .card .card-row .card-col-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 50%;
+    padding: 5px;
+    gap: 20px;
+  }
+  .select-mode .card .card-row .card-col-menu a {
+    display: block;
+    font-size: 1rem;
+    padding: 20px;
+    gap: 20px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 300;
+    color: black;
+    font-family: "Press Start 2P", system-ui;
+  }
+  .select-mode .card .card-row .card-col-menu a:hover {
+    background-color: black;
+    font-family: "Press Start 2P", system-ui;
+    color: #ff0077;
+    padding: 10px;
+  }
+  .select-mode .card .card-row .card-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: transparent;
+    color: white;
+    width: 100%;
+    max-width: 60%;
+  }
+  .select-mode .card .card-row .card-col #playerImage {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-top: 20px;
+    border-radius: 50%;
+  }
+  .select-mode .card .card-row .card-col #playerImage .hidden {
+    display: none;
+  }
+}
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .select-mode {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    min-height: 100vh;
+    background-image: url("/images/background.png");
+    background-size: cover;
+  }
+  .select-mode .card {
+    display: flex;
+    flex-direction: column;
+    background-color: #d6dbe5;
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 50%;
+  }
+  .select-mode .card h1 {
+    margin: 2rem;
+    display: flex;
+    justify-content: center;
+    font-family: "BarcadeItalic-wzZz", sand-serif;
+    font-size: 3.5rem;
+    color: black;
+  }
+  .select-mode .card .card-row {
+    display: flex;
+    flex-direction: row;
+    padding: 30px;
+    gap: 40px;
+  }
+  .select-mode .card .card-row .card-col-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 50%;
+    padding: 5px;
+    gap: 20px;
+  }
+  .select-mode .card .card-row .card-col-menu a {
+    display: block;
+    font-size: 1.5rem;
+    padding: 20px;
+    gap: 20px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 300;
+    color: black;
+    font-family: "Press Start 2P", system-ui;
+  }
+  .select-mode .card .card-row .card-col-menu a:hover {
+    background-color: black;
+    font-family: "Press Start 2P", system-ui;
+    color: #ff0077;
+    padding: 10px;
+  }
+  .select-mode .card .card-row .card-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: transparent;
+    color: white;
+    width: 100%;
+    max-width: 60%;
+  }
+  .select-mode .card .card-row .card-col #playerImage {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-top: 20px;
+    border-radius: 50%;
+  }
+  .select-mode .card .card-row .card-col #playerImage .hidden {
+    display: none;
+  }
+}
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .select-mode {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    min-height: 100vh;
+    background-image: url("/images/background.png");
+    background-size: cover;
+  }
+  .select-mode .card {
+    display: flex;
+    flex-direction: column;
+    background-color: #d6dbe5;
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 50%;
+  }
+  .select-mode .card h1 {
+    margin: 2rem;
+    display: flex;
+    justify-content: center;
+    font-family: "BarcadeItalic-wzZz", sand-serif;
+    font-size: 3.5rem;
+    color: black;
+  }
+  .select-mode .card .card-row {
+    display: flex;
+    flex-direction: row;
+    padding: 30px;
+    gap: 40px;
+  }
+  .select-mode .card .card-row .card-col-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 50%;
+    padding: 5px;
+    gap: 20px;
+  }
+  .select-mode .card .card-row .card-col-menu a {
+    display: block;
+    font-size: 1.5rem;
+    padding: 20px;
+    gap: 20px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 300;
+    color: black;
+    font-family: "Press Start 2P", system-ui;
+  }
+  .select-mode .card .card-row .card-col-menu a:hover {
+    background-color: black;
+    font-family: "Press Start 2P", system-ui;
+    color: #ff0077;
+    padding: 10px;
+  }
+  .select-mode .card .card-row .card-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: transparent;
+    color: white;
+    width: 100%;
+    max-width: 60%;
+  }
+  .select-mode .card .card-row .card-col #playerImage {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-top: 20px;
+    border-radius: 50%;
+  }
+  .select-mode .card .card-row .card-col #playerImage .hidden {
+    display: none;
+  }
+}
+/*Extra small devices*/
 @font-face {
   font-family: "BarcadeItalic-wzZz";
   src: url("/fonts/barcade-font/BarcadeItalic-wzZz.otf") format("truetype");
@@ -398,13 +1588,240 @@
   font-size: 1.5rem;
   font-family: "BarcadeNoBar-mzD9", sand-serif;
 }
-.access-card .card .container.buttons .btnAccess a {
-  text-decoration: none;
-  color: white;
+
+/* Extra small devices*/
+@media only screen and (max-width: 600px) {
+  .access-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("/images/background.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .access-card .card {
+    width: 100%;
+    max-width: 60%;
+  }
+  .access-card .card .card-body .marker {
+    height: 10px;
+    width: 300px;
+    margin: 10px auto;
+  }
+  .access-card .card .card-body .row-emojis .col-emoji {
+    font-size: 2.5rem;
+  }
+  .access-card .card .card-body .card-title {
+    font-size: 2.5rem;
+  }
+  .access-card .card .container.buttons {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  .access-card .card .container.buttons .btnAccess {
+    width: 100%;
+    max-width: 30%;
+    font-size: 1.5rem;
+  }
+  .access-card .card .container.buttons .btnAccess a {
+    text-decoration: none;
+    color: white;
+  }
+  .access-card .card .container.buttons .btnAccess:hover {
+    /*  font-size: 3rem; */
+    transform: scale(1.5);
+  }
 }
-.access-card .card .container.buttons .btnAccess:hover {
-  /*  font-size: 3rem; */
-  transform: scale(1.5);
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .access-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("/images/background.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .access-card .card {
+    width: 100%;
+    max-width: 60%;
+  }
+  .access-card .card .card-body .marker {
+    height: 10px;
+    width: 350px;
+    margin: 10px auto;
+  }
+  .access-card .card .card-body .row-emojis .col-emoji {
+    font-size: 2.9rem;
+  }
+  .access-card .card .card-body .card-title {
+    font-size: 3rem;
+  }
+  .access-card .card .container.buttons {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+  }
+  .access-card .card .container.buttons .btnAccess {
+    width: 100%;
+    max-width: 30%;
+    font-size: 1.7rem;
+  }
+  .access-card .card .container.buttons .btnAccess a {
+    text-decoration: none;
+    color: white;
+  }
+  .access-card .card .container.buttons .btnAccess:hover {
+    /*  font-size: 3rem; */
+    transform: scale(1.5);
+  }
+}
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .access-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("/images/background.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .access-card .card {
+    width: 100%;
+    max-width: 60%;
+  }
+  .access-card .card .card-body .marker {
+    height: 10px;
+    width: 420px;
+    margin: 10px auto;
+  }
+  .access-card .card .card-body .row-emojis .col-emoji {
+    font-size: 3.2rem;
+  }
+  .access-card .card .card-body .card-title {
+    font-size: 4rem;
+  }
+  .access-card .card .container.buttons {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+  }
+  .access-card .card .container.buttons .btnAccess {
+    width: 100%;
+    max-width: 30%;
+    font-size: 1.7rem;
+  }
+  .access-card .card .container.buttons .btnAccess a {
+    text-decoration: none;
+    color: white;
+  }
+  .access-card .card .container.buttons .btnAccess:hover {
+    /*  font-size: 3rem; */
+    transform: scale(1.5);
+  }
+}
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .access-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("/images/background.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .access-card .card {
+    width: 100%;
+    max-width: 60%;
+  }
+  .access-card .card .card-body .marker {
+    height: 10px;
+    width: 550px;
+    margin: 10px auto;
+  }
+  .access-card .card .card-body .row-emojis .col-emoji {
+    font-size: 3.5rem;
+  }
+  .access-card .card .card-body .card-title {
+    font-size: 4rem;
+  }
+  .access-card .card .container.buttons {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+  }
+  .access-card .card .container.buttons .btnAccess {
+    width: 100%;
+    max-width: 25%;
+    font-size: 1.7rem;
+  }
+  .access-card .card .container.buttons .btnAccess a {
+    text-decoration: none;
+    color: white;
+  }
+  .access-card .card .container.buttons .btnAccess:hover {
+    /*  font-size: 3rem; */
+    transform: scale(1.5);
+  }
+}
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .access-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("/images/background.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .access-card .card {
+    width: 100%;
+    max-width: 60%;
+  }
+  .access-card .card .card-body .marker {
+    height: 10px;
+    width: 770px;
+    margin: 10px auto;
+  }
+  .access-card .card .card-body .row-emojis .col-emoji {
+    font-size: 4.5rem;
+  }
+  .access-card .card .card-body .card-title {
+    font-size: 5rem;
+  }
+  .access-card .card .container.buttons {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    gap: 50px;
+  }
+  .access-card .card .container.buttons .btnAccess {
+    width: 100%;
+    max-width: 25%;
+    font-size: 1.9rem;
+  }
+  .access-card .card .container.buttons .btnAccess a {
+    text-decoration: none;
+    color: white;
+  }
+  .access-card .card .container.buttons .btnAccess:hover {
+    transform: scale(1.3);
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */

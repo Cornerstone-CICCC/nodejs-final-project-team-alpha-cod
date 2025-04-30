@@ -7,52 +7,45 @@
         <div class="row card-row">
             <!--Side navbar menu-->
             <div class="col card-col-menu">
-                    <a href="/game" id="singlePlayer">Single Player Mode</a>
-                    <a href="/game" id="multiPlayer">Multiplayer Mode</a>
+                    <a href="/game" id="singlePlayer">Single player</a>
+                    <a href="/multigame" id="multiPlayer">Multiplayer</a>
             </div>
             
             <div class="col card-col">
-                <img id="playerImage" src="" alt="" class="hidden">
+                <img id="playerImage" src="" class="hidden">
             </div>
         </div>
     </div>
 </div>
 
 <script>
-    
-    //GSAP
+    import gsap from 'gsap';
 
-    import { gsap } from "gsap";
-    import { ScrollTrigger } from "gsap/ScrollTrigger";
-    gsap.registerPlugin(ScrollTrigger);
-
-
-const singlePlayer = document.getElementById("singlePlayer");
+    const singlePlayer = document.getElementById("singlePlayer");
 const multiPlayer = document.getElementById("multiPlayer");
 const playerImage = document.getElementById("playerImage");
 
-const singlePlayerImg = "/images/singlePlayer.png";
-const multiPlayerImg = "/images/multiPlayer.png";
+const singlePlayerImg = "/images/singlePlayer.jpg";
+const multiPlayerImg = "/images/multiPlayer.jpg";
 
-// Hover Effect with GSAP Animation (Triggers Every Time)
-singlePlayer.addEventListener("mouseenter", () => {
-    playerImage.src = singlePlayerImg;
+// GSAP Animation function
+function showImage(imageSrc) {
+    playerImage.src = imageSrc;
     playerImage.classList.remove("hidden");
 
-    gsap.fromTo("#playerImage", 
-        { rotation: -30, scale: 0.8, opacity: 0 },
-        { rotation: 360, scale: 1.5, opacity: 1, ease: "back.inOut", duration: 1.5 }
+    gsap.fromTo(playerImage, 
+        { opacity: 0, scale: 0, rotation: -180 }, 
+        { opacity: 1, scale: 1, rotation: 0, duration: 0.8, ease: "power2.out" }
     );
-});
+}
 
-multiPlayer.addEventListener("mouseenter", () => {
-    playerImage.src = multiPlayerImg;
-    playerImage.classList.remove("hidden");
+// Hover Effect
+singlePlayer.addEventListener("mouseover", () => showImage(singlePlayerImg));
+multiPlayer.addEventListener("mouseover", () => showImage(multiPlayerImg));
 
-    gsap.fromTo("#playerImage", 
-        { rotation: 30, scale: 0.8, opacity: 0 },
-        { rotation: -360, scale: 1.2, opacity: 1, ease: "power2.inOut", duration: 1.5 }
-    );
-});
+// Click Effect (to keep the image visible)
+singlePlayer.addEventListener("click", () => playerImage.src = singlePlayerImg);
+multiPlayer.addEventListener("click", () => playerImage.src = multiPlayerImg);
+
 
 </script>
