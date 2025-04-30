@@ -8,14 +8,14 @@
         <h1>SignUp</h1>
         <p id="main-p">Fill out the form and create your profile</p>
         <p>Already a player? 
-            <button class="btn btnAccess" aria-label="log-in">
-                <a href="/login">Login</a>
-            </button>
         </p>
+        <button class="btn btnAccess" aria-label="log-in">
+            <a href="/login">Login</a>
+        </button>
     </div>
     <!--Form -->
     <div class="container form">
-        <form id="signup-form" action="#" method="post">
+        <form id="signup-form" method="post">
             <fieldset>
                 <!--Firstname -->
                 <label for="firstname">
@@ -60,3 +60,28 @@
           </form>
     </div>
 </div>
+
+
+<script>
+    const form = document.querySelector('#signup-form') as HTMLFormElement
+  
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault()
+      
+      const formData = new FormData(e.target as HTMLFormElement)
+      const formObj = Object.fromEntries(formData.entries()) // Converts form data to JS object
+      const res = await fetch(`http://localhost:3600/user/signup`, {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formObj)
+      })
+      if (!res.ok) {
+        console.error("Something went wrong")
+        return
+      }
+      window.location.href = "/login"
+    })
+  </script>

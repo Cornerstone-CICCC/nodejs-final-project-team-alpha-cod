@@ -1,0 +1,428 @@
+---
+import ChatBox from '../components/chatbox.astro';
+---
+
+<div class="multigame">
+    <header id="header">
+        <div class="tic-tac-toe-intro">
+        <h1 class="title">TICPACTOE</h1>
+        <p class="subtitle">PLAY AGAINST YOUR FRIENDS!</p>
+        <h3 id="titleHeader"></h3>
+    </header>
+
+    <div id="board">
+        <div class="cell red"></div>
+        <div class="cell red"></div>
+        <div class="cell yellow"></div>
+        <div class="cell yellow"></div>
+        <div class="cell red"></div>
+        <div class="cell red"></div>
+        <div class="cell yellow"></div>
+        <div class="cell red"></div>
+        <div class="cell red"></div>
+    </div>
+
+    <div class="connection">
+        <div class="conn-inv">
+            <button class="invite">INVITE YOUR FRIENDS</button>
+            <textarea disabled name="invitation" class="invite-code" placeholder="invite code"></textarea>
+        </div>
+        <form class="join-game">
+            <button class="game-code">JOIN A GAME</button>
+            <input type="text" class="game-code-input" placeholder="friend's code">
+        </form>  
+    </div>
+    <div class="notification">
+        <h3 class="notif-text"></h3>
+        <button class="confirm">Got it!</button>
+    </div>
+
+    <ChatBox />
+
+    <div><span id="pointsDisplay"></span></div>
+    <button id="restartBtn">
+        <img src="../../public/undo.png" alt="UndoIcon" width="100" height="100">
+    </button>
+    <button id="logout">
+        <a href="/logout">Logout</a>
+    </button>
+</div>
+
+<script type="module">
+    import { io } from "https://cdn.socket.io/4.8.1/socket.io.esm.min.js"
+    const socket = io('http://localhost:3600')
+
+    const invite = document.querySelector('.invite')
+    const invCode = document.querySelector('.invite-code')
+    const joinGame = document.querySelector('.join-game')
+    const codeInput = document.querySelector('.game-code-input')
+    const notification = document.querySelector('.notification')
+    const confirm = document.querySelector('.confirm')
+    const notifText = document.querySelector('.notif-text')
+    const mySymbol = document.getElementById('titleHeader')
+    const cells = document.querySelectorAll('.cell')
+    const restartBtn = document.querySelector('#restartBtn');
+
+    let symbol = ''
+    let myTurn = false
+    let room = ''
+    let gameOver = false
+    const board = ['', '', '', '', '', '', '', '', '']
+    const winConditions = [
+        [0, 1, 2], [3, 4, 5], [6, 7, 8],
+        [0, 3, 6], [1, 4, 7], [2, 5, 8],
+        [0, 4, 8], [2, 4, 6]
+    ]
+    
+    invite.addEventListener('click', (e) => {
+        e.preventDefault()
+        socket.emit('invite')
+        invCode.innerHTML = `${socket.id}`
+    })
+
+    joinGame.addEventListener('submit', (e) => {
+        e.preventDefault()
+        const roomCode = codeInput.value.trim()
+        socket.emit('join room', roomCode)
+    })
+
+    socket.on('joined', (room) => {
+        notification.classList.add('active')
+        notifText.innerHTML = `Joined room <span class="red" style="color: red;">"${room}"</span>`
+    })
+
+    socket.on('no room', (msg) => {
+        notification.classList.add('active')
+        notifText.innerHTML = msg
+    })
+
+    socket.on('room full', (msg) => {
+        notification.classList.add('active')
+        notifText.innerHTML = msg
+    })
+
+    confirm.addEventListener('click', (e) => {
+        e.preventDefault()
+        notification.classList.remove('active')
+    })
+
+    socket.on('start game', ({ yourSymbol, room: receivedRoom }) => {
+        symbol = yourSymbol
+        myTurn = symbol === 'X'
+        room = receivedRoom
+        notification.classList.add('active')
+        notifText.innerHTML = `You are ${yourSymbol === 'X' 
+        ? `<span style="color: red;">"${yourSymbol}"</span>` :
+        `<span style="color: #ffcc00;">"${yourSymbol}"</span>`
+        }`
+        mySymbol.innerHTML = `You are ${yourSymbol === 'X' 
+        ? `<span style="color: red;">${yourSymbol}</span>` :
+        `<span style="color: #ffcc00;">${yourSymbol}</span>`
+        }`
+    })
+
+    function updateCell(index, symbol) {
+        const cell = cells[index]
+        cell.innerHTML = symbol === 'X'
+            ? `<span style="color: red;">${symbol}</span>`
+            : `<span style="color: #ffcc00;">${symbol}</span>`
+    }
+
+    function checkWinner() {
+        for (const [a, b, c] of winConditions) {
+            if (
+                board[a] &&
+                board[a] === board[b] &&
+                board[a] === board[c]
+            ) {
+                mySymbol.innerHTML = `<span style="color: green;">${board[a]} wins!</span>`
+                [a, b, c].forEach(i => cells[i].style.background = '#2A2343')
+                myTurn = false
+                restartBtn.style.visibility = 'visible'
+                return true
+            }
+        }
+        if (board.every(cell => cell !== '')) {
+            mySymbol.innerHTML = 'Draw!'
+            restartBtn.style.visibility = 'visible'
+            return true
+        }
+        return false
+    }
+
+    cells.forEach((cell, index) => {
+        cell.addEventListener('click', () => {makeMove(index)})
+    })
+
+    socket.on('move made', ({ index, symbol: playedSymbol }) => {
+        board[index] = playedSymbol
+        updateCell(index, playedSymbol)
+        if (!checkWinner()) {
+            myTurn = true
+            mySymbol.textContent = `Your turn`
+        }
+    })
+
+    restartBtn.addEventListener('click', () => {
+        board.fill('')
+        cells.forEach(cell => {
+            cell.textContent = ''
+            cell.style.background = ''
+        })
+        mySymbol.innerHTML = `You are ${symbol === 'X'
+            ? `<span style="color: red;">${symbol}</span>`
+            : `<span style="color: #ffcc00;">${symbol}</span>`}`
+        myTurn = symbol === 'X'
+        restartBtn.style.visibility = 'hidden'
+    })
+
+    function makeMove(index) {
+        if (gameOver || !myTurn || board[index] !== '') return
+
+        board[index] = symbol
+        updateCell(index, symbol)
+        myTurn = false
+        socket.emit('make move', { index, symbol, room })
+        checkWinner()
+    }
+
+</script>
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&display=swap');
+
+    * {
+        margin: 0;
+        box-sizing: border-box;
+        font-family: 'Press Start 2P', monospace;
+        user-select: none;
+        color: white;
+    }
+
+    .multigame {
+        font-family: 'Press Start 2P', monospace;
+        background-image: url('images/bg-pixels.png');
+        width:100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-repeat: repeat;
+  background-size: 200px;
+        padding: 2rem;
+    }
+
+    .connection {
+        display: flex;
+        flex-direction: column;
+        width: 400px;
+        max-width: 90%;
+        margin-top: 1rem;
+        gap: 1rem;
+    }
+
+    .invite-code, .game-code-input {
+        background-color: white;
+        border: black 3px solid;
+        color: #2A2343;
+        resize: none;
+        text-align: center;
+        text-align: ;
+        width: 100%;
+        height: 100%;
+        padding: .5rem;
+        color: black;
+    }
+
+    .invite, .game-code {
+        background-color: #4ceaff;
+        color: black;
+        min-width: 40%;
+        padding: .5rem;
+        &:hover {
+            cursor: pointer;
+            background-color: #d48600;
+        }
+    }
+
+    .tic-tac-toe-intro {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        color: #f4e9d6;
+        font-family: 'Press Start 2P', monospace;
+    }
+
+    .title {
+        font-size: 4rem;
+        letter-spacing: 2px;
+        color: #4ceaff;
+        border-top: 4px solid red;
+        border-bottom: 4px solid red;
+        padding: 0.5rem 0;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+        line-height: 2rem;
+        color: #fff8dc;
+    }
+
+    #header {
+        display: flex;
+        flex-direction: column;
+        width: 235px;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+    #titleHeader {
+        font-size: 2rem;
+        margin-bottom: 30px;
+    }
+
+    #Token {
+        display: flex;
+        gap: 5rem;
+    }
+
+    .conn-inv, .join-game {
+        display: flex;
+    }
+
+    .player {
+        background: white;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 12px;
+        border: solid 4px #17122A;
+        opacity: 0.5;
+        transition: 0.3s;
+    }
+
+    .player:hover {
+        border: solid 4px #2A2343;
+    }
+
+    .player-active {
+        opacity: 1;
+        border: solid 4px #2A2343;
+    }
+
+    #board {
+        display: grid;
+        grid-template-columns: repeat(3, 90px);
+        gap: 0.5rem;
+        padding: 2rem;
+        border: 4.5px groove #4ceaff;
+        border-radius: 3%;
+        background-color: #0d1b2a;
+    }
+
+    .cell{
+        width: 90px;
+        height: 90px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        background-color: #102030;
+        border: 2px solid #4ceaff;
+    }
+
+    .cell:hover {
+        background: #2A2343;
+    }
+
+    #restartBtn {
+        background-color: transparent;
+        margin-top: 30px;
+        width: 235px;
+        padding: 8px;
+        border: none;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s background;
+        visibility: hidden;
+    }
+
+    #restartBtn:hover {
+    }
+
+    #logout{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+        background-color: rgb(255, 0, 0);
+        border-radius: 50px;
+        width: 200px;
+        font-size: 1rem;
+        padding: .6rem;
+        border: 0px;
+        color: black;
+    }
+
+    .red {
+    color: #ff004d;
+    }
+  
+    .yellow {
+    color: #ffcc00;
+    text-shadow: 0 0 1px #000000; /* Opcional, le da más estilo retro */
+    }
+
+    .notification {
+        z-index: 3;
+        font-weight: 400;
+        border: 1px solid #193c4d;
+        position: fixed;
+        background-color: white;
+        right: -340px;
+        bottom: 40px;
+        display: flex;
+        flex-direction: column;
+        gap: .75rem;
+        border-radius: 10px;
+        padding: 1rem;
+        font-size: .75rem;
+        transition: .2s ease-in-out;
+        max-width: 300px;
+        
+        .notif-text {
+            color: black;
+        }
+        .confirm{
+            color: black;
+            &:hover{
+                background-color: #d48600;
+            }
+        }
+        button#confirm {
+            background-color: red;
+            color: white;
+            border-color: red;
+        }
+    }
+    .notification.active{
+        right: 40px;
+    }
+
+    @media (max-width: 480px) {
+
+        .connection p{
+            font-size: 2rem;
+        }
+    }
+</style>
+

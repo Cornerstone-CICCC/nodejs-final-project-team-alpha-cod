@@ -1,54 +1,66 @@
-import express, { Request, Response } from 'express'
-import dotenv from 'dotenv'
-dotenv.config()
-import mongoose from 'mongoose'
-import userRouter from './routes/user.routes'
-import cors from 'cors'
+import express, { Request, Response } from 'express';
+import dotenv from 'dotenv';
+dotenv.config();
+import mongoose from 'mongoose';
+import userRouter from './routes/user.routes';
+import cors from 'cors';
+import { createServer } from 'http';
+import { Server } from 'socket.io';
+import { socketHandler } from './sockets/socket.handler';
+import { multiHandler } from './sockets/multiplayer.handler';
 
 const app = express();
+const ioServer = createServer(app);
+const io = new Server(ioServer, {
+  cors: {
+    origin: 'http://localhost:4321', // Removed trailing slash
+    methods: ['GET', 'POST']
+  }
+});
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
-//Frontend
+// Frontend CORS
 app.use(cors({
-  //Astro port
-  origin: "http://localhost:4321",
-  //Cookie transfer
+  origin: 'http://localhost:4321',
   credentials: true
 }));
 
+// Initialize sockets
+socketHandler(io);
+multiHandler(io)
 
-// Users
-app.use('/user', userRouter)
+// User routes
+app.use('/user', userRouter);
 
-//Welcome to my server
+// Root route
 app.get('/', (req: Request, res: Response) => {
-    res.status(200).send("Welcome to my server")
-})
+  res.status(200).send('Welcome to my server');
+});
 
+// Fallback route
 app.use((req: Request, res: Response) => {
-  res.status(404).send('Invalid route!')
-})
+  res.status(404).send('Invalid route!');
+});
 
+const PORT = process.env.PORT || 3000;
 
-const PORT = process.env.PORT || 3000
 if (!process.env.DATABASE_URI) {
-  throw Error("Missing connection string")
+  throw new Error('Missing connection string');
 }
 
+// Connect to MongoDB and start server
 mongoose
-  .connect(process.env.DATABASE_URI, { 
-    dbName: 'tictactoe', 
-    useNewUrlParser: true, 
-    useUnifiedTopology: true })
+  .connect(process.env.DATABASE_URI)
   .then(() => {
-    console.log(`Connected to MongoDB: tictactoe`);
-    app.listen(PORT, () => {
-      console.log(`Server is running on http://localhost:${PORT}`)
+    if (process.env.NODE_ENV !== 'production') {
+      console.log('Connected to MongoDB: Tictactoe');
+    }
+    ioServer.listen(PORT, () => {
+      console.log(`Server is running on http://localhost:${PORT}`);
     });
   })
   .catch(err => {
-    console.error('MongoDB connection error:', err)
-  })
+    console.error('MongoDB connection error:', err);
+  });
