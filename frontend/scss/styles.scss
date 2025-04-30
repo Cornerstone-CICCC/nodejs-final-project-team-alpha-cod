@@ -1,7 +1,6 @@
 @use 'signup.scss';
 @use 'login.scss';
 @use 'mode.scss';
-@use 'queries.scss';
 
 //Fonts
 @font-face {
@@ -25,7 +24,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-image: url('/images/background.png');
+    background-image: url('/public/images/background.png');
     background-size: cover;
     .card{
         background-color: #0e333c;
@@ -92,52 +91,7 @@
                 transition: border-width 0.6s linear;
                 font-size: 1.5rem;
                 font-family: 'BarcadeNoBar-mzD9', sand-serif;
-            }
-        }
-    }
-}
 
-//Media queries
-/* Extra small devices*/
-@media only screen and (max-width: 600px)  { 
-    .access-card{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-image: url('/images/background.png');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        .card{
-            width: 100%;
-            max-width: 60%;
-            .card-body{
-                .marker{
-                    height: 10px;
-                    width: 300px;
-                    margin: 10px auto
-                }
-                .row-emojis{
-                    .col-emoji{
-                        font-size: 2.5rem;
-                    }
-                }
-                .card-title{
-                    font-size: 2.5rem;
-                }
-            }
-            
-            .container.buttons{
-                display: flex;
-                justify-content: center;
-                flex-direction: column;
-                align-items: center;
-                gap: 20px;
-                .btnAccess {
-                    width: 100%;
-                    max-width: 30%;
-                    font-size: 1.5rem;
-                    
                 a {
                     text-decoration: none;
                     color: white;
