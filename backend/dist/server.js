@@ -50,7 +50,7 @@ mongoose_1.default
     .connect(process.env.DATABASE_URI)
     .then(() => {
     if (process.env.NODE_ENV !== 'production') {
-        console.log('Connected to MongoDB: tictactoe');
+        console.log('Connected to MongoDB: Tictactoe');
     }
     ioServer.listen(PORT, () => {
         console.log(`Server is running on http://localhost:${PORT}`);

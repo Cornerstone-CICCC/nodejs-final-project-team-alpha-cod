@@ -29,23 +29,40 @@ const signupUser = async (req: Request, res: Response) => {
 
 
 
-//Login User
-const loginUser = async (req: Request, res: Response) => {
-    try {
-        const { email, password } = req.body;
-        const user = await User.findOne({ email });
 
-        if(!user) return res.status(400).json({ message: "User not found" })
 
-        const isMatch = await bcrypt.compare(password, user.password)
-        if(!isMatch) return res.status(400).json({ message: "Invalid password"})
+export const loginUser = async (req: Request, res: Response) => {
+  const { email, password } = req.body;
 
-        res.status(200).json({ message: 'Login successful' });
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ message: 'Login failed '});
+  try {
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
     }
+
+    const passwordMatch = await bcrypt.compare(password, user.password);
+
+    if (!passwordMatch) {
+      return res.status(401).json({ message: 'Invalid email or password' });
+    }
+
+    return res.status(200).json({
+      message: 'Login successful',
+      user: {
+        name: user.firstname,
+        email: user.email,
+        // Don't send the hashed password back!
+      }
+    });
+
+  } catch (error) {
+    console.error('Login error:', error);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
 };
+
+
 
 export default {
   signupUser,
